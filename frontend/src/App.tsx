@@ -4,6 +4,8 @@ import { useAuth } from './auth/AuthContext'
 import { apiUrl } from './lib/api'
 import { LoginPage } from './auth/LoginPage'
 import { ProtectedRoute } from './auth/ProtectedRoute'
+import { ChecklistAdministrationPage } from './checklists/ChecklistAdministrationPage'
+import { SurveyTakingPage } from './surveys/SurveyTakingPage'
 import './App.css'
 
 const pageLoadDate = new Date()
@@ -25,8 +27,9 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<Shell />}>
             <Route path="/" element={<Dashboard />} />
-            {navigation.slice(1).map((item) => (
-              <Route key={item.path} path={item.path} element={<EmptySection title={item.label} />} />
+            <Route path="/checklists" element={<ChecklistAdministrationPage />} />
+            {navigation.slice(1).filter((item) => item.path !== '/checklists').map((item) => (
+              <Route key={item.path} path={item.path} element={item.path === '/inspections' ? <SurveyTakingPage /> : <EmptySection title={item.label} />} />
             ))}
             <Route path="*" element={<EmptySection title="Page not found" />} />
           </Route>

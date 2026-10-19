@@ -55,4 +55,16 @@ class Organization extends Model
     {
         return $this->hasMany(SurveyType::class);
     }
+
+    /** @return HasMany<ChecklistDefinition, $this> */
+    public function checklistDefinitions(): HasMany
+    {
+        return $this->hasMany(ChecklistDefinition::class);
+    }
+
+    /** @return HasMany<SurveyInstance, $this> */
+    public function surveys(): HasMany
+    {
+        return $this->hasMany(SurveyInstance::class);
+    }
 }

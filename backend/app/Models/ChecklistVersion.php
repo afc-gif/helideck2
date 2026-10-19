@@ -26,4 +26,10 @@ class ChecklistVersion extends Model
     {
         return $this->hasMany(ChecklistSection::class)->orderBy('position');
     }
+
+    /** @return HasMany<SurveyInstance, $this> */
+    public function surveyInstances(): HasMany
+    {
+        return $this->hasMany(SurveyInstance::class);
+    }
 }

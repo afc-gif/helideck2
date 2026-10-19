@@ -35,6 +35,13 @@ class OrganizationPolicy
         return $user->hasOrganizationPermission($organization->getKey(), 'inspections.manage');
     }
 
+    public function viewSurveys(User $user, Organization $organization): bool
+    {
+        return $user->isSuperAdmin()
+            || $user->hasOrganizationPermission($organization->getKey(), 'inspections.manage')
+            || $user->hasOrganizationPermission($organization->getKey(), 'inspections.assigned.view');
+    }
+
     public function reviewInspections(User $user, Organization $organization): bool
     {
         return $user->hasOrganizationPermission($organization->getKey(), 'reviews.manage');

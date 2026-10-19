@@ -40,4 +40,10 @@ class ChecklistQuestion extends Model
     {
         return $this->hasMany(AnswerOption::class)->orderBy('position');
     }
+
+    /** @return HasMany<SurveyAnswer, $this> */
+    public function surveyAnswers(): HasMany
+    {
+        return $this->hasMany(SurveyAnswer::class);
+    }
 }

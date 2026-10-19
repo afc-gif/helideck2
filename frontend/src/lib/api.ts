@@ -11,6 +11,58 @@ export type AuthUser = {
   }[]
 }
 
+export type ChecklistFieldType = 'text' | 'textarea' | 'integer' | 'decimal' | 'date' | 'time' | 'boolean' | 'single_select' | 'multi_select' | 'informational'
+
+export type ChecklistOption = { value: string; label: string }
+export type ChecklistQuestion = {
+  stable_key: string
+  label: string
+  description: string | null
+  instructions: string | null
+  field_type: ChecklistFieldType
+  is_required: boolean
+  unit: string | null
+  options: ChecklistOption[]
+}
+export type ChecklistSection = { title: string; description: string | null; questions: ChecklistQuestion[] }
+export type ChecklistVersion = {
+  version_number: number
+  status: 'draft' | 'published'
+  published_at: string | null
+  sections: ChecklistSection[]
+}
+export type ChecklistDefinition = {
+  public_id: string
+  name: string
+  description: string | null
+  survey_type: { slug: string; name: string }
+  versions: ChecklistVersion[]
+}
+export type OrganizationSummary = { public_id: string; name: string; slug: string }
+export type ChecklistLibrary = {
+  survey_types: { slug: string; name: string }[]
+  checklists: ChecklistDefinition[]
+}
+export type SurveyTemplate = {
+  public_id: string
+  name: string
+  survey_type: { slug: string; name: string }
+  versions: { version_number: number; published_at: string | null }[]
+}
+export type SurveyQuestion = ChecklistQuestion & { public_id: string }
+export type SurveySection = { public_id: string; title: string; description: string | null; questions: SurveyQuestion[] }
+export type SurveyAnswer = { value: unknown; comment: string | null }
+export type SurveySummary = {
+  public_id: string
+  site_name: string
+  status: 'in_progress' | 'completed'
+  started_at: string
+  completed_at: string | null
+  checklist: { public_id: string; name: string; survey_type: string; version_number: number }
+  assignee: { id: number; name: string } | null
+}
+export type SurveyInstance = SurveySummary & { sections: SurveySection[]; answers: Record<string, SurveyAnswer> }
+
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '')
 
 export function apiUrl(path: string): string {
@@ -96,5 +148,62 @@ export const api = {
   },
   async logout(): Promise<void> {
     await request('/api/logout', { method: 'POST' })
+  },
+  async organizations(): Promise<OrganizationSummary[]> {
+    return (await request<ApiEnvelope<OrganizationSummary[]>>('/api/organizations')).data
+  },
+  async checklists(organizationPublicId: string): Promise<ChecklistLibrary> {
+    return (await request<ApiEnvelope<ChecklistLibrary>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists`)).data
+  },
+  async createChecklist(organizationPublicId: string, payload: { name: string; description: string; survey_type: string }): Promise<ChecklistDefinition> {
+    return (await request<ApiEnvelope<ChecklistDefinition>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })).data
+  },
+  async updateChecklist(organizationPublicId: string, checklistPublicId: string, payload: { name: string; description: string }): Promise<ChecklistDefinition> {
+    return (await request<ApiEnvelope<ChecklistDefinition>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists/${encodeURIComponent(checklistPublicId)}`, {
+      method: 'PATCH',
+      body: JSON.stringify(payload),
+    })).data
+  },
+  async createChecklistVersion(organizationPublicId: string, checklistPublicId: string): Promise<ChecklistDefinition> {
+    return (await request<ApiEnvelope<ChecklistDefinition>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists/${encodeURIComponent(checklistPublicId)}/versions`, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    })).data
+  },
+  async saveChecklistVersion(organizationPublicId: string, checklistPublicId: string, versionNumber: number, sections: ChecklistSection[]): Promise<ChecklistDefinition> {
+    return (await request<ApiEnvelope<ChecklistDefinition>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists/${encodeURIComponent(checklistPublicId)}/versions/${versionNumber}`, {
+      method: 'PUT',
+      body: JSON.stringify({ sections }),
+    })).data
+  },
+  async publishChecklistVersion(organizationPublicId: string, checklistPublicId: string, versionNumber: number): Promise<ChecklistDefinition> {
+    return (await request<ApiEnvelope<ChecklistDefinition>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists/${encodeURIComponent(checklistPublicId)}/versions/${versionNumber}/publish`, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    })).data
+  },
+  async surveyTemplates(organizationPublicId: string): Promise<SurveyTemplate[]> {
+    return (await request<ApiEnvelope<SurveyTemplate[]>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/survey-templates`)).data
+  },
+  async surveys(organizationPublicId: string): Promise<SurveySummary[]> {
+    return (await request<ApiEnvelope<SurveySummary[]>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys`)).data
+  },
+  async createSurvey(organizationPublicId: string, payload: { checklist_public_id: string; version_number: number; site_name: string }): Promise<SurveyInstance> {
+    return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })).data
+  },
+  async survey(organizationPublicId: string, surveyPublicId: string): Promise<SurveyInstance> {
+    return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(surveyPublicId)}`)).data
+  },
+  async saveSurveyAnswers(organizationPublicId: string, surveyPublicId: string, answers: { question_public_id: string; value: unknown; comment: string | null }[], status: 'in_progress' | 'completed'): Promise<SurveyInstance> {
+    return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(surveyPublicId)}/answers`, {
+      method: 'PUT',
+      body: JSON.stringify({ answers, status }),
+    })).data
   },
 }
