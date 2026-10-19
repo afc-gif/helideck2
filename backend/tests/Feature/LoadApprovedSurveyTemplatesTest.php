@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Organization;
 use App\Models\SurveyInstance;
+use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class LoadApprovedSurveyTemplatesTest extends TestCase
@@ -91,6 +93,49 @@ class LoadApprovedSurveyTemplatesTest extends TestCase
             ->expectsOutputToContain('Organization not found')
             ->assertExitCode(1);
         $this->assertSame(0, $other->checklistDefinitions()->count());
+    }
+
+    public function test_slug_lookup_uses_only_the_slug_column_and_does_not_form_a_uuid_or_predicate(): void
+    {
+        Organization::factory()->create(['slug' => 'artsci']);
+        $organizationQueries = [];
+        DB::listen(function (QueryExecuted $query) use (&$organizationQueries): void {
+            if (str_contains(strtolower($query->sql), 'from "organizations"')) {
+                $organizationQueries[] = strtolower($query->sql);
+            }
+        });
+
+        $this->artisan('survey-templates:load-approved', ['organization' => 'artsci'])
+            ->expectsOutputToContain('Would create a offshore-helideck definition')
+            ->assertSuccessful();
+
+        $lookup = collect($organizationQueries)->first(fn (string $sql): bool => str_contains($sql, 'where'));
+        $this->assertNotNull($lookup);
+        $this->assertStringContainsString('"slug"', $lookup);
+        $this->assertStringNotContainsString('"public_id"', $lookup);
+        $this->assertStringNotContainsString(' or ', $lookup);
+    }
+
+    public function test_uuid_argument_resolves_organization_by_public_id_only(): void
+    {
+        $organization = Organization::factory()->create(['slug' => 'artsci']);
+        $organizationQueries = [];
+        DB::listen(function (QueryExecuted $query) use (&$organizationQueries): void {
+            if (str_contains(strtolower($query->sql), 'from "organizations"')) {
+                $organizationQueries[] = strtolower($query->sql);
+            }
+        });
+
+        $this->artisan('survey-templates:load-approved', ['organization' => $organization->public_id])
+            ->expectsOutputToContain('Would create a offshore-helideck definition')
+            ->assertSuccessful();
+
+        $lookup = collect($organizationQueries)->first(fn (string $sql): bool => str_contains($sql, 'where'));
+        $this->assertNotNull($lookup);
+        $this->assertStringContainsString('"public_id"', $lookup);
+        $this->assertStringNotContainsString('"slug"', $lookup);
+        $this->assertStringNotContainsString(' or ', $lookup);
+        $this->assertSame(0, $organization->checklistDefinitions()->count());
     }
 
     public function test_loader_refuses_to_duplicate_an_unidentified_existing_checklist_of_the_same_type(): void

@@ -19,10 +19,14 @@ class LoadApprovedSurveyTemplates extends Command
 {
     public function handle(): int
     {
-        $organization = Organization::query()
-            ->where('slug', $this->argument('organization'))
-            ->orWhere('public_id', $this->argument('organization'))
-            ->first();
+        $organizationIdentifier = $this->argument('organization');
+        $organizationLookup = Organization::query();
+
+        // Keep UUID comparisons on the UUID column only. PostgreSQL may cast
+        // every bound value in an OR predicate to UUID, including a slug.
+        $organization = Str::isUuid($organizationIdentifier)
+            ? $organizationLookup->where('public_id', $organizationIdentifier)->first()
+            : $organizationLookup->where('slug', $organizationIdentifier)->first();
 
         if (! $organization) {
             $this->error('Organization not found. No organization was created.');
