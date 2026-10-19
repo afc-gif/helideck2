@@ -298,8 +298,15 @@ class LoadApprovedSurveyTemplates extends Command
             }
             foreach ($expected['questions'] as $questionIndex => $questionData) {
                 $question = $questions[$questionIndex];
-                if ($question->stable_key !== $this->stableUuid($questionData['stable_key']) || $question->label !== $questionData['label'] || $question->field_type !== $questionData['field_type'] || (bool) $question->is_required !== $questionData['is_required'] || $question->source_document_identifier !== $questionData['source_provenance']['document_identifier'] || $question->source_wording !== $questionData['source_provenance']['wording'] || $question->source_locator !== $questionData['source_provenance']['locator']) {
+                $options = $question->options->sortBy('position')->values();
+                if ($question->stable_key !== $this->stableUuid($questionData['stable_key']) || $question->label !== $questionData['label'] || $question->field_type !== $questionData['field_type'] || (bool) $question->is_required !== $questionData['is_required'] || $question->source_document_identifier !== $questionData['source_provenance']['document_identifier'] || $question->source_wording !== $questionData['source_provenance']['wording'] || $question->source_locator !== $questionData['source_provenance']['locator'] || $options->count() !== count($questionData['options'])) {
                     return false;
+                }
+                foreach ($questionData['options'] as $optionIndex => $expectedOption) {
+                    $option = $options[$optionIndex];
+                    if ($option->value !== $expectedOption['value'] || $option->label !== $expectedOption['label']) {
+                        return false;
+                    }
                 }
             }
 

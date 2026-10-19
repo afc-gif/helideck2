@@ -27,7 +27,7 @@ class LoadApprovedSurveyTemplatesTest extends TestCase
         $this->artisan('survey-templates:load-approved', ['organization' => 'artsci', '--apply' => true])
             ->assertSuccessful();
 
-        $definitions = $organization->checklistDefinitions()->with(['surveyType', 'versions.sections.questions', 'versions.sections.tableBlocks.columns'])->get();
+        $definitions = $organization->checklistDefinitions()->with(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns'])->get();
         $this->assertCount(2, $definitions);
         $offshore = $definitions->firstWhere('surveyType.slug', 'offshore-helideck');
         $onshore = $definitions->firstWhere('surveyType.slug', 'onshore-heliport');
@@ -40,7 +40,14 @@ class LoadApprovedSurveyTemplatesTest extends TestCase
         $this->assertSame('Heliport inspection report NORTH BANK.docx', $onshore->versions->sole()->sections->first()->source_document_identifier);
         $this->assertSame(3, $offshore->versions->sole()->sections->sum(fn ($section) => $section->tableBlocks->count()));
         $this->assertSame(4, $onshore->versions->sole()->sections->sum(fn ($section) => $section->tableBlocks->count()));
+        $offshoreQuestions = $offshore->versions->sole()->sections->flatMap->questions;
+        $onshoreQuestions = $onshore->versions->sole()->sections->flatMap->questions;
+        $this->assertSame('single_select', $offshoreQuestions->firstWhere('field_type', 'single_select')->field_type);
+        $this->assertTrue($offshoreQuestions->firstWhere('field_type', 'single_select')->options->contains('value', 'complaint'));
+        $this->assertTrue($onshoreQuestions->contains(fn ($question) => $question->field_type === 'boolean'));
+        $this->assertTrue($onshoreQuestions->firstWhere('field_type', 'single_select')->options->isNotEmpty());
         $this->assertSame(0, SurveyInstance::query()->count());
+        $this->assertSame(0, DB::table('survey_answers')->count());
         $this->assertSame(0, $offshore->versions->sole()->sections->sum(fn ($section) => $section->tableBlocks->sum(fn ($block) => $block->surveyRows()->count())));
     }
 
@@ -203,7 +210,9 @@ class LoadApprovedSurveyTemplatesTest extends TestCase
         $this->assertStringContainsString('Taxiway / taxi-route type', $onshoreText);
         $this->assertStringContainsString('Foam requirement matrix', $offshoreText);
         $this->assertStringNotContainsString('OLISA KENECHUKWU', $offshoreText.$onshoreText);
-        $this->assertStringNotContainsString('NOT SIGHTED', $offshoreText.$onshoreText);
+        $this->assertStringContainsString('COMPLAINT', $offshoreText);
+        $this->assertStringContainsString('NON COMPLIANT', $onshoreText);
+        $this->assertStringNotContainsString('"answer"', $offshoreText.$onshoreText);
         $this->assertStringNotContainsString('27 TH  July, 2026', $offshoreText.$onshoreText);
     }
 }

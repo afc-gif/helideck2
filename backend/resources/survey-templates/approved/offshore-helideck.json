@@ -164,10 +164,39 @@
         {
           "stable_key": "offshore-helideck-table-4-row-8",
           "label": "Aircraft Tie-down points: 3m, 5m, 7m?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Aircraft Tie-down points: 3m, 5m, 7m?",
@@ -252,10 +281,39 @@
         {
           "stable_key": "offshore-helideck-table-5-row-5",
           "label": "Perimeter line: Should be white, 30cm wide.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Perimeter line: Should be white, 30cm wide.",
@@ -270,10 +328,39 @@
         {
           "stable_key": "offshore-helideck-table-5-row-6",
           "label": "Touchdown/Position Marking Circle: It should be yellow, 1 meter wide. State inner diameter (0.5D).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Touchdown/Position Marking Circle: It should be yellow, 1 meter wide. State inner diameter (0.5D).",
@@ -288,10 +375,39 @@
         {
           "stable_key": "offshore-helideck-table-5-row-7",
           "label": "Chevron: Dimensions (0.79m x 0.10m), colour (black), angle (210o), location.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Chevron: Dimensions (0.79m x 0.10m), colour (black), angle (210o), location.",
@@ -621,10 +737,39 @@
         {
           "stable_key": "offshore-helideck-table-7-row-2",
           "label": "210o Sector obstruction(s): Location & height above helideck level.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "210o Sector obstruction(s): Location & height above helideck level.",
@@ -639,10 +784,39 @@
         {
           "stable_key": "offshore-helideck-table-7-row-3",
           "label": "150o Sector obstruction(s): Location & height above helideck level.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "150o Sector obstruction(s): Location & height above helideck level.",
@@ -657,10 +831,39 @@
         {
           "stable_key": "offshore-helideck-table-7-row-4",
           "label": "180o Sector, 5:1 Falling gradient obstruction(s): What & where.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "180o Sector, 5:1 Falling gradient obstruction(s): What & where.",
@@ -675,10 +878,39 @@
         {
           "stable_key": "offshore-helideck-table-7-row-5",
           "label": "Is combined operation being conducted? Duration. OFS compromised? Obstacle penetration of 5:1 falling gradient? Yellow prohibition marker placed on decks deemed unavailable? Any limitations on operation? LSSR update (If applicable)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Is combined operation being conducted? Duration. OFS compromised? Obstacle penetration of 5:1 falling gradient? Yellow prohibition marker placed on decks deemed unavailable? Any limitations on operation? LSSR update (If applicable)",
@@ -709,10 +941,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-2",
           "label": "Age/Condition:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Age/Condition:",
@@ -727,10 +988,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-3",
           "label": "Tension: Lift not above 25 centimeters near the center.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Tension: Lift not above 25 centimeters near the center.",
@@ -745,10 +1035,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-4",
           "label": "Location: Should cover Aiming Circle and not cover rig identification & max mass weight value.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Location: Should cover Aiming Circle and not cover rig identification & max mass weight value.",
@@ -763,10 +1082,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-5",
           "label": "Material: Should be sisal, not polypropylene (Frictape type acceptable).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Material: Should be sisal, not polypropylene (Frictape type acceptable).",
@@ -781,10 +1129,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-6",
           "label": "Type: Threaded/Knotted/Inter-twined.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Type: Threaded/Knotted/Inter-twined.",
@@ -799,10 +1176,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-7",
           "label": "Tie-down points: Every 1.5 meters.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Tie-down points: Every 1.5 meters.",
@@ -817,10 +1223,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-8",
           "label": "Method of Securing: Rope/Webbing/Ratchet Tensioners.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Method of Securing: Rope/Webbing/Ratchet Tensioners.",
@@ -835,10 +1270,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-9",
           "label": "Net size: 9 x 9m, 12 x 12m, 15 x 15m (covers the aiming circle not the name).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Net size: 9 x 9m, 12 x 12m, 15 x 15m (covers the aiming circle not the name).",
@@ -853,10 +1317,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-10",
           "label": "Mesh size: 200mm/250mm.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Mesh size: 200mm/250mm.",
@@ -871,10 +1364,39 @@
         {
           "stable_key": "offshore-helideck-table-8-row-11",
           "label": "Rope diameter: 200mm.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Rope diameter: 200mm.",
@@ -941,10 +1463,39 @@
         {
           "stable_key": "offshore-helideck-table-9-row-3",
           "label": "Width from deck edge: (1.5m).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Width from deck edge: (1.5m).",
@@ -959,10 +1510,39 @@
         {
           "stable_key": "offshore-helideck-table-9-row-4",
           "label": "Hammock effect:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Hammock effect:",
@@ -977,10 +1557,39 @@
         {
           "stable_key": "offshore-helideck-table-9-row-5",
           "label": "Slope: Slope (10º), highest point above deck level.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Slope: Slope (10º), highest point above deck level.",
@@ -995,10 +1604,39 @@
         {
           "stable_key": "offshore-helideck-table-9-row-6",
           "label": "Inspection & Test Schedule: (Note drop test is not to be carried out offshore) Regular condition inspection schedule offshore weekly recommended.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Inspection & Test Schedule: (Note drop test is not to be carried out offshore) Regular condition inspection schedule offshore weekly recommended.",
@@ -1047,10 +1685,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-3",
           "label": "Height above deck level (<25 centimeters) & distance apart: (3 meters)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Height above deck level (<25 centimeters) & distance apart: (3 meters)",
@@ -1065,10 +1732,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-4",
           "label": "Position: Do the lights delineate the safe landing area only, coincident with perimeter line, and visible for 360o ADL?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Position: Do the lights delineate the safe landing area only, coincident with perimeter line, and visible for 360o ADL?",
@@ -1083,10 +1779,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-5",
           "label": "Power rating: (30 candelas green)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Power rating: (30 candelas green)",
@@ -1101,10 +1826,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-6",
           "label": "Limit of safe landing area: (Are red lights used to delineate the unsafe sectors?)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Limit of safe landing area: (Are red lights used to delineate the unsafe sectors?)",
@@ -1119,10 +1873,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-7",
           "label": "Emergency power supply Supply to the Perimeter and flood lights",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Emergency power supply Supply to the Perimeter and flood lights",
@@ -1137,10 +1920,39 @@
         {
           "stable_key": "offshore-helideck-table-10-row-8",
           "label": "Switching: controlled from the radio room or by HLO",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Switching: controlled from the radio room or by HLO",
@@ -1205,10 +2017,39 @@
         {
           "stable_key": "offshore-helideck-table-12-row-2",
           "label": "Installation/rig/vessel floodlighting: All floodlighting angled so as not to dazzle pilots",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Installation/rig/vessel floodlighting: All floodlighting angled so as not to dazzle pilots",
@@ -1223,10 +2064,39 @@
         {
           "stable_key": "offshore-helideck-table-12-row-3",
           "label": "Structures 15 meter above deck level: Omnidirectional red lights every 10m above deck level with a minimum intensity of 10 candelas. To include all crane booms.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Structures 15 meter above deck level: Omnidirectional red lights every 10m above deck level with a minimum intensity of 10 candelas. To include all crane booms.",
@@ -1241,10 +2111,39 @@
         {
           "stable_key": "offshore-helideck-table-12-row-4",
           "label": "Highest point: Omni-directional light",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Highest point: Omni-directional light",
@@ -1275,10 +2174,39 @@
         {
           "stable_key": "offshore-helideck-table-13-row-2",
           "label": "Obstruction lighting (it is acceptable for flare stacks and booms to be floodlit).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Obstruction lighting (it is acceptable for flare stacks and booms to be floodlit).",
@@ -1327,10 +2255,39 @@
         {
           "stable_key": "offshore-helideck-table-14-row-2",
           "label": "A flashing Red Light that will signal to pilot that it is not safe to land.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "A flashing Red Light that will signal to pilot that it is not safe to land.",
@@ -1345,10 +2302,39 @@
         {
           "stable_key": "offshore-helideck-table-14-row-3",
           "label": "Automatic switching.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Automatic switching.",
@@ -1363,10 +2349,39 @@
         {
           "stable_key": "offshore-helideck-table-14-row-4",
           "label": "Visible from all directions.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Visible from all directions.",
@@ -1381,10 +2396,39 @@
         {
           "stable_key": "offshore-helideck-table-14-row-5",
           "label": "Connected to the emergency power supply.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Connected to the emergency power supply.",
@@ -1399,10 +2443,39 @@
         {
           "stable_key": "offshore-helideck-table-14-row-6",
           "label": "Dual filament.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Dual filament.",
@@ -1451,10 +2524,39 @@
         {
           "stable_key": "offshore-helideck-table-15-row-3",
           "label": "Tie-down strops: minimum amount 6. Breaking strength 12.000 lbs.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Tie-down strops: minimum amount 6. Breaking strength 12.000 lbs.",
@@ -1469,10 +2571,39 @@
         {
           "stable_key": "offshore-helideck-table-15-row-4",
           "label": "Prohibited landing marker: 4 x 4-meter red flag with diagonal yellow cross.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Prohibited landing marker: 4 x 4-meter red flag with diagonal yellow cross.",
@@ -1487,10 +2618,39 @@
         {
           "stable_key": "offshore-helideck-table-15-row-5",
           "label": "Breathing apparatus: Minimum 2 sets with two reserve cylinders, stored in clearly marked and secure watertight cabinets or chests, container should be painted green and market with white letters, located close to the helideck, conduct operational check.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Breathing apparatus: Minimum 2 sets with two reserve cylinders, stored in clearly marked and secure watertight cabinets or chests, container should be painted green and market with white letters, located close to the helideck, conduct operational check.",
@@ -1523,10 +2683,39 @@
         {
           "stable_key": "offshore-helideck-table-15-row-7",
           "label": "Helicopter starter unit: Rectifier or battery trolley, 28V DC? Condition?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Helicopter starter unit: Rectifier or battery trolley, 28V DC? Condition?",
@@ -1611,10 +2800,39 @@
         {
           "stable_key": "offshore-helideck-table-16-row-5",
           "label": "Air gap beneath helideck?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Air gap beneath helideck?",
@@ -1663,10 +2881,39 @@
         {
           "stable_key": "offshore-helideck-table-17-row-3",
           "label": "Handrails: collapsible/fixed/conspicuous.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Handrails: collapsible/fixed/conspicuous.",
@@ -1681,10 +2928,39 @@
         {
           "stable_key": "offshore-helideck-table-17-row-4",
           "label": "Steps: clean and no trip/slip hazard. Good HSE practice",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Steps: clean and no trip/slip hazard. Good HSE practice",
@@ -1699,10 +2975,39 @@
         {
           "stable_key": "offshore-helideck-table-17-row-5",
           "label": "Safety Notices: available and clearly readable.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Safety Notices: available and clearly readable.",
@@ -1717,10 +3022,39 @@
         {
           "stable_key": "offshore-helideck-table-17-row-6",
           "label": "Control of non-helideck crew & passengers: procedures to prevent inadvertent access to helideck (e.g. chains).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Control of non-helideck crew & passengers: procedures to prevent inadvertent access to helideck (e.g. chains).",
@@ -1769,10 +3103,39 @@
         {
           "stable_key": "offshore-helideck-table-18-row-3",
           "label": "Fire main pressure: always on during helicopter operations? Good practice",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Fire main pressure: always on during helicopter operations? Good practice",
@@ -1805,10 +3168,39 @@
         {
           "stable_key": "offshore-helideck-table-18-row-5",
           "label": "Back-up concentrate must be 100%.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Back-up concentrate must be 100%.",
@@ -1877,10 +3269,39 @@
         {
           "stable_key": "offshore-helideck-table-18-row-9",
           "label": "Foam System Maintenance & Testing: Monitors must be functionally tested periodically for correct operation. Water test is acceptable. A competent person should test all parts of the foam production system annually.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Foam System Maintenance & Testing: Monitors must be functionally tested periodically for correct operation. Water test is acceptable. A competent person should test all parts of the foam production system annually.",
@@ -1895,10 +3316,39 @@
         {
           "stable_key": "offshore-helideck-table-18-row-10",
           "label": "Portable extinguishers (complementary media: Dry Powder & CO2) Minimum number of extinguishers: One 45kg dry powder (trolley type) at each access: Dry Powder must be FOAM compatible type: One 18kg CO2 with lance (trolley type): Delivery rate 1.35 kg per second for Dry Powder & CO2 Condition: last inspection date (minimum annual), particular attention to be paid to rubber hoses.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Portable extinguishers (complementary media: Dry Powder & CO2) Minimum number of extinguishers: One 45kg dry powder (trolley type) at each access: Dry Powder must be FOAM compatible type: One 18kg CO2 with lance (trolley type): Delivery rate 1.35 kg per second for Dry Powder & CO2 Condition: last inspection date (minimum annual), particular attention to be paid to rubber hoses.",
@@ -2180,10 +3630,39 @@
         {
           "stable_key": "offshore-helideck-table-21-row-2",
           "label": "Water rescue boat available in event of ditching (Type/location/available during all air operations).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Water rescue boat available in event of ditching (Type/location/available during all air operations).",
@@ -2198,10 +3677,39 @@
         {
           "stable_key": "offshore-helideck-table-21-row-3",
           "label": "Trained Rescue Personnel manning rescue boat (Number).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Trained Rescue Personnel manning rescue boat (Number).",
@@ -2216,10 +3724,39 @@
         {
           "stable_key": "offshore-helideck-table-21-row-4",
           "label": "Procedure in place for water rescue.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Procedure in place for water rescue.",
@@ -2250,10 +3787,39 @@
         {
           "stable_key": "offshore-helideck-table-22-row-2",
           "label": "Quantity, quality and condition of protective clothing: (available for each member of helideck crew) Two piece suits (bunker coat and trousers) to meet standard EN469 or equivalent, OR One piece suits (preferably orange) to meet standard EN 469 or equivalent Helmet with full face visor to meet BS 3864 or equivalent Gloves to meet standard EN 659 or equivalent Boots to meet standard EN 345 or equivalent",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Quantity, quality and condition of protective clothing: (available for each member of helideck crew) Two piece suits (bunker coat and trousers) to meet standard EN469 or equivalent, OR One piece suits (preferably orange) to meet standard EN 469 or equivalent Helmet with full face visor to meet BS 3864 or equivalent Gloves to meet standard EN 659 or equivalent Boots to meet standard EN 345 or equivalent",
@@ -2268,10 +3834,39 @@
         {
           "stable_key": "offshore-helideck-table-22-row-3",
           "label": "HLO identifying waistcoat: contrasting colour to the rest of the helideck crew, flame retardant material, marked with the letters HLO in a reflective material on the front and back.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "HLO identifying waistcoat: contrasting colour to the rest of the helideck crew, flame retardant material, marked with the letters HLO in a reflective material on the front and back.",
@@ -2286,10 +3881,39 @@
         {
           "stable_key": "offshore-helideck-table-22-row-4",
           "label": "Stowage for fire fighting equipment: Clothing should be hung and other equipment stored tidily in a quick access, clean and dry store near the helideck.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Stowage for fire fighting equipment: Clothing should be hung and other equipment stored tidily in a quick access, clean and dry store near the helideck.",
@@ -2320,10 +3944,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-2",
           "label": "Is the Radio Operator Competent and licensed with knowledge of and access to SOPs and Emergency procedures?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Is the Radio Operator Competent and licensed with knowledge of and access to SOPs and Emergency procedures?",
@@ -2338,10 +3991,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-3",
           "label": "Do daily reports & departure messages contain all necessary information? (Position, weather, fuel state, POB, etc.)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Do daily reports & departure messages contain all necessary information? (Position, weather, fuel state, POB, etc.)",
@@ -2356,10 +4038,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-4",
           "label": "For DP vessels, is there an “aircrew alert procedures” during helicopter rotors running on deck operations, when there is a significant change in the environmental conditions such as relative wind and speed, vessel heading and roll/pitch figures? (Status Lights, Radio, Visual Signals)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "For DP vessels, is there an “aircrew alert procedures” during helicopter rotors running on deck operations, when there is a significant change in the environmental conditions such as relative wind and speed, vessel heading and roll/pitch figures? (Status Lights, Radio, Visual Signals)",
@@ -2374,10 +4085,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-5",
           "label": "Portable multi-channel hand-held Radio (air band) including headset: number, type(s) and condition (a spare set is good practice).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Portable multi-channel hand-held Radio (air band) including headset: number, type(s) and condition (a spare set is good practice).",
@@ -2410,10 +4150,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-7",
           "label": "Portable VHF FM: (if applicable).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Portable VHF FM: (if applicable).",
@@ -2428,10 +4197,39 @@
         {
           "stable_key": "offshore-helideck-table-23-row-8",
           "label": "Radio Log – Record of helicopter movements, POB, endurance, etc.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Radio Log – Record of helicopter movements, POB, endurance, etc.",
@@ -2462,10 +4260,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-2",
           "label": "Are weather reports in standard ICAO format?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Are weather reports in standard ICAO format?",
@@ -2480,10 +4307,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-3",
           "label": "Anemometer (fixed) – calibration date (annual).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Anemometer (fixed) – calibration date (annual).",
@@ -2516,10 +4372,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-5",
           "label": "Wind direction: calibration date (annual), sensor in representative location? (Must be positioned in clear air.)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Wind direction: calibration date (annual), sensor in representative location? (Must be positioned in clear air.)",
@@ -2534,10 +4419,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-6",
           "label": "Air temperature – sensor in representative location? I.e. in the vicinity of the helideck.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Air temperature – sensor in representative location? I.e. in the vicinity of the helideck.",
@@ -2552,10 +4466,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-7",
           "label": "Precision barometer/Twin Altimeters - height relative to helideck level, calibration date (annual) not sited inside pressurized compartment.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Precision barometer/Twin Altimeters - height relative to helideck level, calibration date (annual) not sited inside pressurized compartment.",
@@ -2570,10 +4513,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-8",
           "label": "Visibility and cloud base equipment (if applicable): calibration date (annual).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Visibility and cloud base equipment (if applicable): calibration date (annual).",
@@ -2588,10 +4560,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-9",
           "label": "Pitch, Roll and Heave equipment (if applicable): calibration date (annual) Note:Should be able to report the maximum peak levels of Pitch, Roll and Heave over the last 20 minutes.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Pitch, Roll and Heave equipment (if applicable): calibration date (annual) Note:Should be able to report the maximum peak levels of Pitch, Roll and Heave over the last 20 minutes.",
@@ -2606,10 +4607,39 @@
         {
           "stable_key": "offshore-helideck-table-24-row-10",
           "label": "Maintenance Schedule for instruments (especially automated systems): Daily/weekly checks by Observer plus scheduled maintenance and calibration in accordance with manufacturers’ instructions. Note: Observers should be trained to carry out daily/weekly checks.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Maintenance Schedule for instruments (especially automated systems): Daily/weekly checks by Observer plus scheduled maintenance and calibration in accordance with manufacturers’ instructions. Note: Observers should be trained to carry out daily/weekly checks.",
@@ -2640,10 +4670,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-2",
           "label": "Are pre-landing checks in accordance with a checklist & SOPs?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Are pre-landing checks in accordance with a checklist & SOPs?",
@@ -2658,10 +4717,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-3",
           "label": "Is there dangerous goods reference material and documentation on board?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Is there dangerous goods reference material and documentation on board?",
@@ -2676,10 +4764,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-4",
           "label": "Helicopter emergency diagrams & safety posters – location? All types?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Helicopter emergency diagrams & safety posters – location? All types?",
@@ -2694,10 +4811,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-5",
           "label": "Helideck training exercises – written record - to be carried out at least once every month.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Helideck training exercises – written record - to be carried out at least once every month.",
@@ -2730,10 +4876,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-7",
           "label": "Heavy-duty scales for baggage and freight: calibration date (annual).",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Heavy-duty scales for baggage and freight: calibration date (annual).",
@@ -2748,10 +4923,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-8",
           "label": "Control of access to screened baggage/cargo: Documented baggage Processing procedures:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Control of access to screened baggage/cargo: Documented baggage Processing procedures:",
@@ -2766,10 +4970,39 @@
         {
           "stable_key": "offshore-helideck-table-25-row-9",
           "label": "Stretcher – type and location.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Stretcher – type and location.",
@@ -2800,10 +5033,39 @@
         {
           "stable_key": "offshore-helideck-table-26-row-2",
           "label": "Type of System Make: Condition: Pump running light: Quick release connector on bonding lead",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Type of System Make: Condition: Pump running light: Quick release connector on bonding lead",
@@ -2818,10 +5080,39 @@
         {
           "stable_key": "offshore-helideck-table-26-row-3",
           "label": "Date of last Inspection Authorized Fuel Inspector: Date: BHNL Fuel Inspector: Date:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Date of last Inspection Authorized Fuel Inspector: Date: BHNL Fuel Inspector: Date:",
@@ -2836,10 +5127,39 @@
         {
           "stable_key": "offshore-helideck-table-26-row-4",
           "label": "On-Site Procedures Weekly & Daily Checks Provision of Shell test kits",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "On-Site Procedures Weekly & Daily Checks Provision of Shell test kits",
@@ -2854,10 +5174,39 @@
         {
           "stable_key": "offshore-helideck-table-26-row-5",
           "label": "Documentation Retention of paperwork",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Documentation Retention of paperwork",
@@ -2888,10 +5237,39 @@
         {
           "stable_key": "offshore-helideck-table-27-row-2",
           "label": "HLO (Training to OPITO or equivalent standard) HLO Course Validity 2 years Heli Team Members Radio License",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "HLO (Training to OPITO or equivalent standard) HLO Course Validity 2 years Heli Team Members Radio License",
@@ -2924,10 +5302,39 @@
         {
           "stable_key": "offshore-helideck-table-27-row-4",
           "label": "Heli Admin Radio License . DG by Air Awareness",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Heli Admin Radio License . DG by Air Awareness",
@@ -2942,10 +5349,39 @@
         {
           "stable_key": "offshore-helideck-table-27-row-5",
           "label": "Manning Policy Current industry practice suggested the helideck crew consists of an HLO + 3.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Manning Policy Current industry practice suggested the helideck crew consists of an HLO + 3.",
@@ -2960,10 +5396,39 @@
         {
           "stable_key": "offshore-helideck-table-27-row-6",
           "label": "Documentation and continuation training. Exercises and drills.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Documentation and continuation training. Exercises and drills.",
@@ -3012,10 +5477,39 @@
         {
           "stable_key": "offshore-helideck-table-28-row-3",
           "label": "Packaging",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Packaging",
@@ -3046,10 +5540,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-2",
           "label": "Obstacle clearance Potential for a reduction in the distance from helideck (TLOF) center to the limited obstacle sector (LOS) (denoting the origin of the 1st and 2nd segments). Is the TLOF surrounded by a 1D circle (FATO) free of any obstruction?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Obstacle clearance Potential for a reduction in the distance from helideck (TLOF) center to the limited obstacle sector (LOS) (denoting the origin of the 1st and 2nd segments). Is the TLOF surrounded by a 1D circle (FATO) free of any obstruction?",
@@ -3064,10 +5587,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-3",
           "label": "Visual cues Are adequate visual cues available? Identification of helideck location early on in the approach Visual cues to help maintain the sight picture during approach Visual cues on final approach to hover position Visual cues for landing Visual references on lift-off and hover",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Visual cues Are adequate visual cues available? Identification of helideck location early on in the approach Visual cues to help maintain the sight picture during approach Visual cues on final approach to hover position Visual cues for landing Visual references on lift-off and hover",
@@ -3082,10 +5634,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-4",
           "label": "Space for passengers Is there enough space available for passengers and crew to safely alight and embark the helicopter and to transit to and from the operating area safely?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Space for passengers Is there enough space available for passengers and crew to safely alight and embark the helicopter and to transit to and from the operating area safely?",
@@ -3100,10 +5681,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-5",
           "label": "Helicopter Tie-down Is enough space available for securing helicopters, for the conduct of safe and efficient refueling operations (where provided) and for post-crash teams to provide effective fire and rescue intervention in the event of an incident or accident occurring?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Helicopter Tie-down Is enough space available for securing helicopters, for the conduct of safe and efficient refueling operations (where provided) and for post-crash teams to provide effective fire and rescue intervention in the event of an incident or accident occurring?",
@@ -3118,10 +5728,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-6",
           "label": "Touchdown/positioning inaccuracies Reduction in the margin built-in to allow for touchdown/positioning inaccuracies during landing. e.g limits on applied power for a combination of wind speed and direction. Are markings clean and free of contamination which may reduce a pilot’s ability to touch down accurately?",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Touchdown/positioning inaccuracies Reduction in the margin built-in to allow for touchdown/positioning inaccuracies during landing. e.g limits on applied power for a combination of wind speed and direction. Are markings clean and free of contamination which may reduce a pilot’s ability to touch down accurately?",
@@ -3136,10 +5775,39 @@
         {
           "stable_key": "offshore-helideck-table-29-row-7",
           "label": "Reduction in ‘helpful ground cushion effect from rotor downwash. The reduction in helpful ground cushion needs to be considered for each helicopter on a case-by-case basis, particularly when operating to a sub-1D helideck with a perforated surface i.e. some modern helideck designs incorporate a passive fire-retarding feature which allows unburned fuel to drain away through specially manufactured holes consisting in a drain-hole pattern over the surface of the load bearing area.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "complaint",
+              "label": "COMPLAINT"
+            },
+            {
+              "value": "not_compliant",
+              "label": "NOT COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_seen",
+              "label": "NOT SEEN"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "HELIDECK REPORT FSO TOPAZ.docx",
             "wording": "Reduction in ‘helpful ground cushion effect from rotor downwash. The reduction in helpful ground cushion needs to be considered for each helicopter on a case-by-case basis, particularly when operating to a sub-1D helideck with a perforated surface i.e. some modern helideck designs incorporate a passive fire-retarding feature which allows unburned fuel to drain away through specially manufactured holes consisting in a drain-hole pattern over the surface of the load bearing area.",
@@ -3157,6 +5825,8 @@
   ],
   "source_notes": [
     "Locators use one-based physical DOCX table, row, and cell order. Page numbers are omitted because they are unverified.",
-    "Completed values in answer/comment cells and all source schedule rows are omitted."
+    "Completed values in answer/comment cells and all source schedule rows are omitted.",
+    "Discrete response choices follow the source response vocabulary; no completed response is loaded as a default. Compound prompts and non-discrete response rows remain free text pending review.",
+    "FSO TOPAZ's source term COMPLAINT is preserved verbatim as a review-required choice; its intended meaning is unresolved."
   ]
 }

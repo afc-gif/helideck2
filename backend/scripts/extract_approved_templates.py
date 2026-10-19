@@ -173,6 +173,24 @@ def technical_block(slug: str, table_no: int, table: ET.Element, key: str, docum
     }
 
 
+def response_definition(slug: str, cells: list[ET.Element]) -> tuple[str, list[dict[str, str]]]:
+    """Use source response vocabulary to choose an input shape, never as a default answer."""
+    response = cell_text(cells[-1]).strip().upper() if len(cells) > 1 else ""
+    prompt = cell_text(cells[0]) if cells else ""
+    if response in {"YES", "NO"} and len(re.findall(r"\byes\s+or\s+no\b", prompt, re.IGNORECASE)) == 1:
+        return "boolean", []
+
+    # The report's answer cells contain discrete inspection classifications.
+    # Keep source spelling, including FSO TOPAZ's ambiguous "COMPLAINT" term.
+    offshore_statuses = ["COMPLIANT", "COMPLAINT", "NOT COMPLIANT", "UNKNOWN", "NOT SIGHTED", "NOT SEEN", "NOT APPLICABLE"]
+    onshore_statuses = ["YES", "NO", "COMPLIANT", "NON COMPLIANT", "UNKNOWN", "NOT SIGHTED", "NOT APPLICABLE"]
+    statuses = offshore_statuses if slug == "offshore-helideck" else onshore_statuses
+    if response in statuses:
+        return "single_select", [{"value": status.lower().replace(" ", "_"), "label": status} for status in statuses]
+
+    return "text", []
+
+
 def build(slug: str, spec: dict[str, object]) -> dict[str, object]:
     document = str(spec["document"])
     source_path = ROOT / "docs/approved-survey-sources" / document
@@ -207,13 +225,14 @@ def build(slug: str, spec: dict[str, object]) -> dict[str, object]:
                 # Do not turn those completed inspection values into reusable question wording.
                 if slug == "onshore-heliport" and table_no == 19 and row_no in {5, 6}:
                     continue
+                field_type, options = response_definition(slug, cells)
                 section["questions"].append({
                     "stable_key": f"{key}-row-{row_no}",
                     "label": label,
-                    "field_type": "text",
+                    "field_type": field_type,
                     "is_required": False,
                     "unit": None,
-                    "options": [],
+                    "options": options,
                     "source_provenance": provenance(document, label, locator(table_no, row_no, 1)),
                 })
         section_specs.append(section)
@@ -230,6 +249,8 @@ def build(slug: str, spec: dict[str, object]) -> dict[str, object]:
         "source_notes": [
             "Locators use one-based physical DOCX table, row, and cell order. Page numbers are omitted because they are unverified.",
             "Completed values in answer/comment cells and all source schedule rows are omitted.",
+            "Discrete response choices follow the source response vocabulary; no completed response is loaded as a default. Compound prompts and non-discrete response rows remain free text pending review.",
+            "FSO TOPAZ's source term COMPLAINT is preserved verbatim as a review-required choice; its intended meaning is unresolved.",
         ],
     }
 

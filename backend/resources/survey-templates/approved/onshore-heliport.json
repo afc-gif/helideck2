@@ -56,10 +56,39 @@
         {
           "stable_key": "onshore-heliport-table-4-row-2",
           "label": "Number of TLOFs: Shape of TLOF on site (Maybe any shape) : Dimensions of TLOF on site: (must be at least .83D of the helicopter intended for landing)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Number of TLOFs: Shape of TLOF on site (Maybe any shape) : Dimensions of TLOF on site: (must be at least .83D of the helicopter intended for landing)",
@@ -74,10 +103,39 @@
         {
           "stable_key": "onshore-heliport-table-4-row-3",
           "label": "Location of TLOFs: One TLOF shall be located within the FATO or one or more TLOFs shall be collocated with helicopter stands. If located within the FATO it must be within .5D from the edge of the FATO. Elevated Heliports must Have one TLOF Coincidental with the FATO",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Location of TLOFs: One TLOF shall be located within the FATO or one or more TLOFs shall be collocated with helicopter stands. If located within the FATO it must be within .5D from the edge of the FATO. Elevated Heliports must Have one TLOF Coincidental with the FATO",
@@ -92,10 +150,39 @@
         {
           "stable_key": "onshore-heliport-table-4-row-4",
           "label": "Slope of TLOF: (Sufficient to prevent water accumulation, but not be more than 2° in any direction,)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Slope of TLOF: (Sufficient to prevent water accumulation, but not be more than 2° in any direction,)",
@@ -110,10 +197,39 @@
         {
           "stable_key": "onshore-heliport-table-4-row-5",
           "label": "TLOF Load Bearing in metre tons: TLOF located within the FATO – must have dynamic loading capable for helicopter TLOF collocated with Helicopter Stand – must be static bearing capable for helicopter Check test data documents. Maximum Load Markings Located within the boundary of the TLOF or FATO: Yes or No Readable on final approach: Yes or No White numbers followed by a white “t”: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "TLOF Load Bearing in metre tons: TLOF located within the FATO – must have dynamic loading capable for helicopter TLOF collocated with Helicopter Stand – must be static bearing capable for helicopter Check test data documents. Maximum Load Markings Located within the boundary of the TLOF or FATO: Yes or No Readable on final approach: Yes or No White numbers followed by a white “t”: Yes or No",
@@ -146,10 +262,39 @@
         {
           "stable_key": "onshore-heliport-table-4-row-7",
           "label": "Touchdown Position Marking Circle Markings on TLOF TDPM Circle provided: Yes or No Located at Center of TLOF: Yes or No Yellow Circle line .5 meters wide: Yes or No TDPM Circle .5D Diameter (8m S-76): Yes or No Does under carriage fit within the TDPM Circle: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Touchdown Position Marking Circle Markings on TLOF TDPM Circle provided: Yes or No Located at Center of TLOF: Yes or No Yellow Circle line .5 meters wide: Yes or No TDPM Circle .5D Diameter (8m S-76): Yes or No Does under carriage fit within the TDPM Circle: Yes or No",
@@ -198,10 +343,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-3",
           "label": "Stand Markings A helicopter stand perimeter marking shall be a yellow circle and have a line width of 15 cm A central zone perimeter marking shall be a yellow circle and have a line width of 15 cm, except when the TLOF is collocated with a helicopter stand, the characteristics of the TLOF perimeter markings shall apply:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Stand Markings A helicopter stand perimeter marking shall be a yellow circle and have a line width of 15 cm A central zone perimeter marking shall be a yellow circle and have a line width of 15 cm, except when the TLOF is collocated with a helicopter stand, the characteristics of the TLOF perimeter markings shall apply:",
@@ -216,10 +390,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-4",
           "label": "Slope of Stand: Shall not exceed 2° in any direction",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Slope of Stand: Shall not exceed 2° in any direction",
@@ -234,7 +437,7 @@
         {
           "stable_key": "onshore-heliport-table-5-row-6",
           "label": "Do Protected Areas/Zones overlap for simultaneous rotors running: Yes or No - May not overlap for simultaneous rotors running",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -252,10 +455,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-7",
           "label": "List obstacles with in the Helicopter Stand: None allowed",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "List obstacles with in the Helicopter Stand: None allowed",
@@ -270,10 +502,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-8",
           "label": "List obstacles within the Protected Area/Zone: No fixed object shall be permitted above the surface of the ground in the protection area around a helicopter stand except for frangible objects, which because of their function, must be located there. Objects whose function requires them to be located in the protection area shall not: if located at a distance of less than 0.75 D from the centre of the helicopter stand, penetrate a plane at a height of 5 cm above the plane of the central zone; and if located at a distance of 0.75 D or more from the centre of the helicopter stand, penetrate a plane at a height of 25 cm above the plane of the central zone and sloping upwards and outwards at a gradient of 5 per cent.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "List obstacles within the Protected Area/Zone: No fixed object shall be permitted above the surface of the ground in the protection area around a helicopter stand except for frangible objects, which because of their function, must be located there. Objects whose function requires them to be located in the protection area shall not: if located at a distance of less than 0.75 D from the centre of the helicopter stand, penetrate a plane at a height of 5 cm above the plane of the central zone; and if located at a distance of 0.75 D or more from the centre of the helicopter stand, penetrate a plane at a height of 25 cm above the plane of the central zone and sloping upwards and outwards at a gradient of 5 per cent.",
@@ -288,10 +549,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-9",
           "label": "Helicopter Central Zone Dimensions: No less than .83D: Yes or No State Diameter: __________________",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Helicopter Central Zone Dimensions: No less than .83D: Yes or No State Diameter: __________________",
@@ -324,10 +614,39 @@
         {
           "stable_key": "onshore-heliport-table-5-row-11",
           "label": "Touchdown Position Marking Circle Markings on Stand TDPM Circle provided on Stand: Yes or No Located at Center of Stand: Yes or No Yellow Circle line 0.5D meters wide: Yes or No TDPM Circle 0.5D: Yes or No Does under carriage fit within the TDPM Circle: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Touchdown Position Marking Circle Markings on Stand TDPM Circle provided on Stand: Yes or No Located at Center of Stand: Yes or No Yellow Circle line 0.5D meters wide: Yes or No TDPM Circle 0.5D: Yes or No Does under carriage fit within the TDPM Circle: Yes or No",
@@ -446,7 +765,7 @@
         {
           "stable_key": "onshore-heliport-table-7-row-6",
           "label": "FATO Surface Resistant to the effects of rotor wash: Yes or no",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -464,7 +783,7 @@
         {
           "stable_key": "onshore-heliport-table-7-row-7",
           "label": "FATO Surface Capable of providing ground effect: Yes or No",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -482,10 +801,39 @@
         {
           "stable_key": "onshore-heliport-table-7-row-8",
           "label": "FATO Surface Bearing Strength Performance Class I – Sufficient to support rejected take-off Performance Class II & III – Sufficient for static load bearing",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "FATO Surface Bearing Strength Performance Class I – Sufficient to support rejected take-off Performance Class II & III – Sufficient for static load bearing",
@@ -500,7 +848,7 @@
         {
           "stable_key": "onshore-heliport-table-7-row-9",
           "label": "Are the FATO/s located near Taxiway Intersections, Runways or High Powered Run-up Areas where Airplane Vortex or Jet Blast is a problem: Yes or No",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -568,7 +916,7 @@
         {
           "stable_key": "onshore-heliport-table-9-row-2",
           "label": "Is there a Safety Area around the each FATO: Yes or no",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -586,10 +934,39 @@
         {
           "stable_key": "onshore-heliport-table-9-row-3",
           "label": "Slope of the Safety Area? (May not exceed 4° outward from FATO)",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Slope of the Safety Area? (May not exceed 4° outward from FATO)",
@@ -746,10 +1123,39 @@
         {
           "stable_key": "onshore-heliport-table-10-row-2",
           "label": "Rejected Take-off Area provided: Yes or No Required for CLASS I Operations Recommended for Class II & III Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Rejected Take-off Area provided: Yes or No Required for CLASS I Operations Recommended for Class II & III Operations",
@@ -764,7 +1170,7 @@
         {
           "stable_key": "onshore-heliport-table-10-row-3",
           "label": "Helicopter Clearway Provided: Yes or No Required for Class I Operations. Recommended for Class II & III Operations",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -782,10 +1188,39 @@
         {
           "stable_key": "onshore-heliport-table-10-row-4",
           "label": "Location of Rejected Take-off Area: - Starting at the edge of the FATO extended beyond to conform to the RFM data",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Location of Rejected Take-off Area: - Starting at the edge of the FATO extended beyond to conform to the RFM data",
@@ -906,10 +1341,39 @@
         {
           "stable_key": "onshore-heliport-table-11-row-3",
           "label": "Is the Landing “H” Properly displayed: Yes or No Within the FATO ------------------------------------------ Yes or No Center of TLOF ------------------------------------------- Yes or No White Color ------------------------------------------------ Yes or No Proper Dimensions( 3m x 1.8m x 0.4m) ----------- Yes or No In the preferred direction of take-off & landing --- Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Is the Landing “H” Properly displayed: Yes or No Within the FATO ------------------------------------------ Yes or No Center of TLOF ------------------------------------------- Yes or No White Color ------------------------------------------------ Yes or No Proper Dimensions( 3m x 1.8m x 0.4m) ----------- Yes or No In the preferred direction of take-off & landing --- Yes or No",
@@ -924,10 +1388,39 @@
         {
           "stable_key": "onshore-heliport-table-11-row-5",
           "label": "FATO Perimeter Line State shape of FATO: Rectangular, Square or Circle White dashed line 1.5 meters long, 30cm wide: Yes or No Spacing between dashes is 1.5 - 2.0 meters: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "FATO Perimeter Line State shape of FATO: Rectangular, Square or Circle White dashed line 1.5 meters long, 30cm wide: Yes or No Spacing between dashes is 1.5 - 2.0 meters: Yes or No",
@@ -942,10 +1435,39 @@
         {
           "stable_key": "onshore-heliport-table-11-row-6",
           "label": "TLOF Perimeter Line .3 meter wide continuous white line: Yes or No Located on the edge of the TLOF located in FATO: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "TLOF Perimeter Line .3 meter wide continuous white line: Yes or No Located on the edge of the TLOF located in FATO: Yes or No",
@@ -960,10 +1482,39 @@
         {
           "stable_key": "onshore-heliport-table-11-row-7",
           "label": "AIMING POINT - NA ONLY NECESSARY AT AGIP BASE Located on the FATO: Yes or No 9 meter equilateral triangle: Yes or No 1meter wide white line: Yes or No Aligned in the approach & take-off direction; Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "AIMING POINT - NA ONLY NECESSARY AT AGIP BASE Located on the FATO: Yes or No 9 meter equilateral triangle: Yes or No 1meter wide white line: Yes or No Aligned in the approach & take-off direction; Yes or No",
@@ -978,10 +1529,39 @@
         {
           "stable_key": "onshore-heliport-table-11-row-8",
           "label": "Heliport Name Markings Visible from all angles White letters not less than 1.5 meters in height",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Heliport Name Markings Visible from all angles White letters not less than 1.5 meters in height",
@@ -1048,10 +1628,39 @@
         {
           "stable_key": "onshore-heliport-table-13-row-3",
           "label": "Flight Path alignment Guidance Marking Lights Omnidirectionnel steady white lights : Yes or No Row of three or more lights of 6m minimum length : Yes or No Alighned within the Arrow of the Flight Path Alignment Guidance Marking : Yes or No Uniformly spaced 1.5m – 3m between lights :Yes or No Serviceable : Yes or No Emergency Power Supply : Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Flight Path alignment Guidance Marking Lights Omnidirectionnel steady white lights : Yes or No Row of three or more lights of 6m minimum length : Yes or No Alighned within the Arrow of the Flight Path Alignment Guidance Marking : Yes or No Uniformly spaced 1.5m – 3m between lights :Yes or No Serviceable : Yes or No Emergency Power Supply : Yes or No",
@@ -1066,10 +1675,39 @@
         {
           "stable_key": "onshore-heliport-table-13-row-4",
           "label": "Visual Alignment Guidance System INSTALLED (Should be installed if no approach lighting is installed, visual clues are difficult, obstacle clearance requires certain approach direction): LOCATION: CHARACTERICTICS Located on the downwind edge of FATO: In the preferred approach direction: Guides aircraft to FATO: Clears all obstacles on the approach: Frangible and mounted low: Azimuth is adjustable to +/- 5°: Guidance shall include three sectors: Offset left, offset right Serviceable: Emergency Power Connection:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Visual Alignment Guidance System INSTALLED (Should be installed if no approach lighting is installed, visual clues are difficult, obstacle clearance requires certain approach direction): LOCATION: CHARACTERICTICS Located on the downwind edge of FATO: In the preferred approach direction: Guides aircraft to FATO: Clears all obstacles on the approach: Frangible and mounted low: Azimuth is adjustable to +/- 5°: Guidance shall include three sectors: Offset left, offset right Serviceable: Emergency Power Connection:",
@@ -1084,10 +1722,39 @@
         {
           "stable_key": "onshore-heliport-table-13-row-6",
           "label": "Visual Approach Slope Indicator System INSTALLED (Should be installed if the helicopter requires a stabilized approach or visual clues are difficult or obstacle clearance requires a particular slope to be flown): CHARACTERICTICS Located on the downwind edge of FATO: In the preferred approach direction: Guides aircraft to FATO: Clears all obstacles on the approach: Frangible and mounted low: Azimuth is adjustable to 1°-12° above horizon: Serviceable: Emergency Power Connection:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Visual Approach Slope Indicator System INSTALLED (Should be installed if the helicopter requires a stabilized approach or visual clues are difficult or obstacle clearance requires a particular slope to be flown): CHARACTERICTICS Located on the downwind edge of FATO: In the preferred approach direction: Guides aircraft to FATO: Clears all obstacles on the approach: Frangible and mounted low: Azimuth is adjustable to 1°-12° above horizon: Serviceable: Emergency Power Connection:",
@@ -1747,10 +2414,39 @@
         {
           "stable_key": "onshore-heliport-table-19-row-2",
           "label": "RUBBER OR SANDBAG CHOCKS: Yes or No Number: =(must be rubber, wood or sandbags, minimum amount is one set for each wheel). References for use of chocks below",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "RUBBER OR SANDBAG CHOCKS: Yes or No Number: =(must be rubber, wood or sandbags, minimum amount is one set for each wheel). References for use of chocks below",
@@ -1765,10 +2461,39 @@
         {
           "stable_key": "onshore-heliport-table-19-row-3",
           "label": "Tie Down Straps Number: Breaking strength 12,000lbs: Yes or No Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Tie Down Straps Number: Breaking strength 12,000lbs: Yes or No Guidelines for the Management of Aviation Operations,",
@@ -1783,10 +2508,39 @@
         {
           "stable_key": "onshore-heliport-table-19-row-4",
           "label": "Prohibitive Landing Marker: Yes or No 4 x 4 metre red flag with diagonal yellow cross Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Prohibitive Landing Marker: Yes or No 4 x 4 metre red flag with diagonal yellow cross Guidelines for the Management of Aviation Operations,",
@@ -1801,10 +2555,39 @@
         {
           "stable_key": "onshore-heliport-table-19-row-7",
           "label": "Helicopter starter unit: Yes or No Number: Type: Condition: (Rectifier or battery trolley, 28 VDC) serviceability: Yes or No Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Helicopter starter unit: Yes or No Number: Type: Condition: (Rectifier or battery trolley, 28 VDC) serviceability: Yes or No Guidelines for the Management of Aviation Operations,",
@@ -2011,10 +2794,39 @@
         {
           "stable_key": "onshore-heliport-table-22-row-2",
           "label": "Quantity, quality and condition of protective clothing: (available for each member of helideck crew) Two piece suits (bunker coat and trousers) to meet standard EN469 or equivalent, OR One piece suits (preferably orange) to meet standard EN 469 or equivalent – Yes or No Helmet with full face visor to meet BS 3864 or equivalent – Yes or No Gloves to meet standard EN 659 or equivalent – Yes or No Boots to meet standard EN 345 or equivalent – Yes or No Ref: Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Quantity, quality and condition of protective clothing: (available for each member of helideck crew) Two piece suits (bunker coat and trousers) to meet standard EN469 or equivalent, OR One piece suits (preferably orange) to meet standard EN 469 or equivalent – Yes or No Helmet with full face visor to meet BS 3864 or equivalent – Yes or No Gloves to meet standard EN 659 or equivalent – Yes or No Boots to meet standard EN 345 or equivalent – Yes or No Ref: Guidelines for the Management of Aviation Operations,",
@@ -2029,7 +2841,7 @@
         {
           "stable_key": "onshore-heliport-table-22-row-3",
           "label": "Stowage for fire fighting equipment: Stored properly: Yes or No",
-          "field_type": "text",
+          "field_type": "boolean",
           "is_required": false,
           "unit": null,
           "options": [],
@@ -2081,10 +2893,39 @@
         {
           "stable_key": "onshore-heliport-table-23-row-2",
           "label": "Note: Where a facility intends to use the surface of water for a FORCED LANDING AREA, or water underlies the Approach Obstacle Surface or the Take-off & Climb Obstacle Surface, then water rescue must be available.",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Note: Where a facility intends to use the surface of water for a FORCED LANDING AREA, or water underlies the Approach Obstacle Surface or the Take-off & Climb Obstacle Surface, then water rescue must be available.",
@@ -2099,10 +2940,39 @@
         {
           "stable_key": "onshore-heliport-table-23-row-3",
           "label": "Water Rescue Boats Available during all aviation operations: Yes or No Location: Type boats:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Water Rescue Boats Available during all aviation operations: Yes or No Location: Type boats:",
@@ -2117,10 +2987,39 @@
         {
           "stable_key": "onshore-heliport-table-23-row-4",
           "label": "Personnel Manning Rescue Boats Number: Trained Personnel: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Personnel Manning Rescue Boats Number: Trained Personnel: Yes or No",
@@ -2135,10 +3034,39 @@
         {
           "stable_key": "onshore-heliport-table-23-row-5",
           "label": "Procedures Are procedures in place for helicopter operations: Yes or No SOP Published: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Procedures Are procedures in place for helicopter operations: Yes or No SOP Published: Yes or No",
@@ -2169,10 +3097,39 @@
         {
           "stable_key": "onshore-heliport-table-24-row-2",
           "label": "How is access to the Helideck/Helipad controlled? Security Measures in place: Yes or No HLO / HDA escort: Yes or No Locked Gates: Yes or No Perimeter Fence: Yes or No Posted as a restricted area: Yes or No Armed Guards: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "How is access to the Helideck/Helipad controlled? Security Measures in place: Yes or No HLO / HDA escort: Yes or No Locked Gates: Yes or No Perimeter Fence: Yes or No Posted as a restricted area: Yes or No Armed Guards: Yes or No",
@@ -2187,10 +3144,39 @@
         {
           "stable_key": "onshore-heliport-table-24-row-3",
           "label": "Safety Notices: - Available and clearly readable: Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Safety Notices: - Available and clearly readable: Yes or No",
@@ -2239,10 +3225,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-3",
           "label": "Do daily reports & departure messages contain all necessary information? Position: Yes or No Weather: Yes or No Fuel state: Yes or No or NA Personnel awaiting transport: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Do daily reports & departure messages contain all necessary information? Position: Yes or No Weather: Yes or No Fuel state: Yes or No or NA Personnel awaiting transport: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
@@ -2257,10 +3272,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-4",
           "label": "Portable multi-channel hand held Radio (air band) including head set Number of Radios: Number of Headsets: Radio Chargers available: Yes or No Condition of Radios Condition of Headsets: Spare Radio & Headsets: Yes No Ref: Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Portable multi-channel hand held Radio (air band) including head set Number of Radios: Number of Headsets: Radio Chargers available: Yes or No Condition of Radios Condition of Headsets: Spare Radio & Headsets: Yes No Ref: Guidelines for the Management of Aviation Operations,",
@@ -2275,10 +3319,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-5",
           "label": "Airband radios Type Air Band Radio Base Unit: Condition: Is a backup available & serviceable: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Airband radios Type Air Band Radio Base Unit: Condition: Is a backup available & serviceable: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
@@ -2293,10 +3366,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-6",
           "label": "Portable VHF FM: (if applicable): Yes or No",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Portable VHF FM: (if applicable): Yes or No",
@@ -2311,10 +3413,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-7",
           "label": "NDB Type: Installed: Yes or No Frequency: Identifier: Multi-Frequency Re-tuneable: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "NDB Type: Installed: Yes or No Frequency: Identifier: Multi-Frequency Re-tuneable: Yes or No Ref: Guidelines for the Management of Aviation Operations,",
@@ -2329,10 +3460,39 @@
         {
           "stable_key": "onshore-heliport-table-25-row-8",
           "label": "Radio Log – Record of helicopter movements, POB, endurance, etc. Helicopter Take-off & Departure Time & Date Recorded: Yes or No Endurance recorded: Yes or No POD recorded: Yes or No Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Radio Log – Record of helicopter movements, POB, endurance, etc. Helicopter Take-off & Departure Time & Date Recorded: Yes or No Endurance recorded: Yes or No POD recorded: Yes or No Ref: Guidelines for the Management of Aviation Operations",
@@ -2523,10 +3683,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-2",
           "label": "Are pre-landing checks in accordance with a checklist & SOPs? Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Are pre-landing checks in accordance with a checklist & SOPs? Ref: Guidelines for the Management of Aviation Operations",
@@ -2577,10 +3766,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-5",
           "label": "Helicopter emergency diagrams & safety posters Location: Types: Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Helicopter emergency diagrams & safety posters Location: Types: Ref: Guidelines for the Management of Aviation Operations",
@@ -2595,10 +3813,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-6",
           "label": "Helideck training exercises – Written record (to be carried out at least once every month): Yes or No Training Schedule: Yes or No Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Helideck training exercises – Written record (to be carried out at least once every month): Yes or No Training Schedule: Yes or No Ref: Guidelines for the Management of Aviation Operations",
@@ -2613,10 +3860,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-7",
           "label": "Video/CD player for showing passenger safety briefings Suitable supervised area for briefing room: Yes or No Video/CD Player: Yes or No Briefing CD for helicopter type: Yes or No Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Video/CD player for showing passenger safety briefings Suitable supervised area for briefing room: Yes or No Video/CD Player: Yes or No Briefing CD for helicopter type: Yes or No Ref: Guidelines for the Management of Aviation Operations",
@@ -2631,10 +3907,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-8",
           "label": "Heavy-duty scales for baggage and freight: calibration date (annual). Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Heavy-duty scales for baggage and freight: calibration date (annual). Ref: Guidelines for the Management of Aviation Operations",
@@ -2649,10 +3954,39 @@
         {
           "stable_key": "onshore-heliport-table-27-row-9",
           "label": "Stretcher – type and location. Ref: AGIP Aviation Manual, Page: 106, 295, 370, 380, 1161 Ref: Guidelines for the Management of Aviation Operations",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Stretcher – type and location. Ref: AGIP Aviation Manual, Page: 106, 295, 370, 380, 1161 Ref: Guidelines for the Management of Aviation Operations",
@@ -2683,10 +4017,39 @@
         {
           "stable_key": "onshore-heliport-table-28-row-2",
           "label": "Type of System Make: Condition: Pump running light: Quick release connector on bonding lead:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Type of System Make: Condition: Pump running light: Quick release connector on bonding lead:",
@@ -2701,10 +4064,39 @@
         {
           "stable_key": "onshore-heliport-table-28-row-3",
           "label": "Date of last Inspection Authorised Fuel Inspector: Date: Date:",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Date of last Inspection Authorised Fuel Inspector: Date: Date:",
@@ -2719,10 +4111,39 @@
         {
           "stable_key": "onshore-heliport-table-28-row-4",
           "label": "On-Site Procedures Weekly & Daily checks Provision of Shell test kits",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "On-Site Procedures Weekly & Daily checks Provision of Shell test kits",
@@ -2737,10 +4158,39 @@
         {
           "stable_key": "onshore-heliport-table-28-row-5",
           "label": "Documentation Retention of paperwork",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Documentation Retention of paperwork",
@@ -2843,10 +4293,39 @@
         {
           "stable_key": "onshore-heliport-table-29-row-6",
           "label": "Documentation and continuation training. Exercises and drills. UKOOA Management of Offshore Helidecks UK CAA CAP 437",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Documentation and continuation training. Exercises and drills. UKOOA Management of Offshore Helidecks UK CAA CAP 437",
@@ -2877,10 +4356,39 @@
         {
           "stable_key": "onshore-heliport-table-30-row-2",
           "label": "Qualified personnel UKOOA Management of Offshore Helidecks",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Qualified personnel UKOOA Management of Offshore Helidecks",
@@ -2895,10 +4403,39 @@
         {
           "stable_key": "onshore-heliport-table-30-row-3",
           "label": "Packaging UKOOA Management of Offshore Helidecks",
-          "field_type": "text",
+          "field_type": "single_select",
           "is_required": false,
           "unit": null,
-          "options": [],
+          "options": [
+            {
+              "value": "yes",
+              "label": "YES"
+            },
+            {
+              "value": "no",
+              "label": "NO"
+            },
+            {
+              "value": "compliant",
+              "label": "COMPLIANT"
+            },
+            {
+              "value": "non_compliant",
+              "label": "NON COMPLIANT"
+            },
+            {
+              "value": "unknown",
+              "label": "UNKNOWN"
+            },
+            {
+              "value": "not_sighted",
+              "label": "NOT SIGHTED"
+            },
+            {
+              "value": "not_applicable",
+              "label": "NOT APPLICABLE"
+            }
+          ],
           "source_provenance": {
             "document_identifier": "Heliport inspection report NORTH BANK.docx",
             "wording": "Packaging UKOOA Management of Offshore Helidecks",
@@ -2916,6 +4453,8 @@
   ],
   "source_notes": [
     "Locators use one-based physical DOCX table, row, and cell order. Page numbers are omitted because they are unverified.",
-    "Completed values in answer/comment cells and all source schedule rows are omitted."
+    "Completed values in answer/comment cells and all source schedule rows are omitted.",
+    "Discrete response choices follow the source response vocabulary; no completed response is loaded as a default. Compound prompts and non-discrete response rows remain free text pending review.",
+    "FSO TOPAZ's source term COMPLAINT is preserved verbatim as a review-required choice; its intended meaning is unresolved."
   ]
 }
