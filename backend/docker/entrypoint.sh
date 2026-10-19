@@ -21,6 +21,18 @@ if [ "$#" -gt 0 ]; then
     exec "$@"
 fi
 
+# Railway may expose additional Apache MPM modules at runtime. Keep the
+# mod_php-compatible prefork MPM as the only enabled MPM before Apache starts.
+find /etc/apache2/mods-enabled -maxdepth 1 -name 'mpm_*.load' ! -name 'mpm_prefork.load' -delete
+find /etc/apache2/mods-enabled -maxdepth 1 -name 'mpm_*.conf' ! -name 'mpm_prefork.conf' -delete
+a2enmod mpm_prefork
+
+mpm_count="$(apache2ctl -M 2>&1 | grep -Ec 'mpm_[[:alnum:]_]+_module' || true)"
+if [ "$mpm_count" -ne 1 ]; then
+    echo "Expected exactly one Apache MPM module; found ${mpm_count}." >&2
+    exit 1
+fi
+
 sed -i "s/Listen 80/Listen ${port}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${port}>/" /etc/apache2/sites-available/000-default.conf
 
