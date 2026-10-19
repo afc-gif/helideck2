@@ -6,6 +6,10 @@ This review covers the two approved DOCX reports in `docs/approved-survey-source
 
 The reports are completed inspections. Observed answers, dates, comments, photographs, and findings are not template defaults. Keep source wording traceable, including apparent spelling errors or inconsistent terms, until an authorized source owner resolves them.
 
+### DOCX table-order audit
+
+The committed North Bank DOCX contains **36 physical Word tables**, not 32. The source mapping below numbers its visible/logical tables and combines some adjacent forms. In physical DOCX table order, the helicopter dimensions, taxiway, obstacle, firefighting, report identity, evidence, non-compliance, recommendation, HLL, and endorsement material are tables **16, 17, 18, 21, 31, 32, 33, 34, 35, and 36**, respectively. Physical table 12 has no extractable text. Several prior logical entries combine adjacent physical tables (including stand/protection, FATO/dimensions, and lighting). Template provenance uses physical table/row/cell order so a reviewer can locate the source without assuming the logical numbering is one-to-one. The North Bank visual-only/diagram content still needs full-resolution review.
+
 ## Proposed template structures
 
 ### Offshore helideck — FSO TOPAZ
