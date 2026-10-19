@@ -7,6 +7,7 @@ use App\Models\SurveyInstance;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use RuntimeException;
 use Tests\TestCase;
 
 class LoadApprovedSurveyTemplatesTest extends TestCase
@@ -41,6 +42,41 @@ class LoadApprovedSurveyTemplatesTest extends TestCase
         $this->assertSame(4, $onshore->versions->sole()->sections->sum(fn ($section) => $section->tableBlocks->count()));
         $this->assertSame(0, SurveyInstance::query()->count());
         $this->assertSame(0, $offshore->versions->sole()->sections->sum(fn ($section) => $section->tableBlocks->sum(fn ($block) => $block->surveyRows()->count())));
+    }
+
+    public function test_loader_preserves_full_long_approved_question_labels(): void
+    {
+        $organization = Organization::factory()->create(['slug' => 'artsci']);
+        $manifest = json_decode(file_get_contents(resource_path('survey-templates/approved/offshore-helideck.json')), true, flags: JSON_THROW_ON_ERROR);
+        $labels = collect($manifest['sections'])->flatMap(fn (array $section): array => array_column($section['questions'], 'label'));
+        $longestLabel = $labels->sortByDesc(fn (string $label): int => mb_strlen($label))->first();
+        $this->assertGreaterThan(255, mb_strlen($longestLabel));
+
+        $this->artisan('survey-templates:load-approved', ['organization' => 'artsci', '--apply' => true])->assertSuccessful();
+
+        $savedLabels = $organization->checklistDefinitions()->with('versions.sections.questions')->get()
+            ->flatMap(fn ($definition) => $definition->versions->flatMap(fn ($version) => $version->sections->flatMap(fn ($section) => $section->questions->pluck('label'))));
+        $this->assertTrue($savedLabels->contains($longestLabel));
+    }
+
+    public function test_failed_template_load_rolls_back_every_template_write(): void
+    {
+        $organization = Organization::factory()->create(['slug' => 'artsci']);
+        $injectedFailure = false;
+        DB::listen(function (QueryExecuted $query) use (&$injectedFailure): void {
+            if (! $injectedFailure && str_contains(strtolower($query->sql), 'insert into "checklist_questions"')) {
+                $injectedFailure = true;
+                throw new RuntimeException('Injected checklist question insert failure.');
+            }
+        });
+
+        $this->artisan('survey-templates:load-approved', ['organization' => 'artsci', '--apply' => true])
+            ->expectsOutputToContain('all changes from this run were rolled back')
+            ->assertExitCode(1);
+
+        $this->assertTrue($injectedFailure);
+        $this->assertSame(0, $organization->checklistDefinitions()->count());
+        $this->assertSame(0, $organization->surveyTypes()->count());
     }
 
     public function test_loader_is_idempotent_reuses_the_existing_fso_draft_and_never_publishes(): void

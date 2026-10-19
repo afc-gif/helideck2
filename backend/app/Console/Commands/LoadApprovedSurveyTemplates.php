@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use JsonException;
 use RuntimeException;
+use Throwable;
 
 #[Signature('survey-templates:load-approved {organization : Organization slug or public ID} {--apply : Persist drafts; otherwise show the plan} {--replace-draft : Replace a different non-empty matching draft}')]
 #[Description('Load approved offshore and onshore survey templates as unpublished drafts.')]
@@ -43,40 +44,62 @@ class LoadApprovedSurveyTemplates extends Command
             return self::FAILURE;
         }
 
-        foreach ($manifests as $manifest) {
-            $plan = $this->resolvePlan($organization, $manifest);
+        $plans = $manifests->map(fn (array $manifest): array => [
+            'manifest' => $manifest,
+            'plan' => $this->resolvePlan($organization, $manifest),
+        ]);
+
+        // Validate the complete target set before writing either template.
+        foreach ($plans as $item) {
+            $plan = $item['plan'];
             if ($plan['error'] !== null) {
                 $this->error($plan['error']);
 
                 return self::FAILURE;
             }
             $this->line($plan['summary']);
-
-            if (! $this->option('apply') || $plan['already_loaded']) {
-                continue;
-            }
-            if ($plan['nonempty_draft'] && ! $this->option('replace-draft')) {
+            if ($this->option('apply') && $plan['nonempty_draft'] && ! $this->option('replace-draft')) {
                 $this->error('A different non-empty draft exists. Review it, then rerun with --replace-draft if replacement is intended.');
 
                 return self::FAILURE;
             }
+        }
 
-            DB::transaction(function () use ($organization, $manifest, $plan): void {
-                $definition = $plan['definition'] ?? $this->createDefinition($organization, $manifest);
-                $version = $plan['version'] ?? $definition->versions()->create([
-                    'version_number' => ((int) $definition->versions()->max('version_number')) + 1,
-                    'status' => 'draft',
-                ]);
+        if ($this->option('apply')) {
+            try {
+                DB::transaction(function () use ($organization, $plans): void {
+                    foreach ($plans as $item) {
+                        $manifest = $item['manifest'];
+                        $plan = $item['plan'];
+                        if ($plan['already_loaded']) {
+                            continue;
+                        }
 
-                if ($version->status !== 'draft') {
-                    throw new RuntimeException('Refusing to change a published checklist version.');
+                        $definition = $plan['definition'] ?? $this->createDefinition($organization, $manifest);
+                        $version = $plan['version'] ?? $definition->versions()->create([
+                            'version_number' => ((int) $definition->versions()->max('version_number')) + 1,
+                            'status' => 'draft',
+                        ]);
+
+                        if ($version->status !== 'draft') {
+                            throw new RuntimeException('Refusing to change a published checklist version.');
+                        }
+
+                        $version->sections()->delete();
+                        $this->writeSections($version, $manifest['sections']);
+                    }
+                });
+            } catch (Throwable $exception) {
+                $this->error('Approved template load failed; all changes from this run were rolled back. '.$exception->getMessage());
+
+                return self::FAILURE;
+            }
+
+            foreach ($plans as $item) {
+                if (! $item['plan']['already_loaded']) {
+                    $this->info('Draft saved. It has not been published.');
                 }
-
-                $version->sections()->delete();
-                $this->writeSections($version, $manifest['sections']);
-            });
-
-            $this->info('Draft saved. It has not been published.');
+            }
         }
 
         if (! $this->option('apply')) {
