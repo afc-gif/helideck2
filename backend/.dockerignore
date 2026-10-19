@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.git
+.agents
+.claude
+vendor
+node_modules
+tests
+database/*.sqlite
+storage/logs/*

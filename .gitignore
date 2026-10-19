@@ -1,0 +1,42 @@
+# Environment files and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+auth.json
+*.pem
+*.key
+
+# PHP / Laravel
+backend/vendor/
+backend/.phpunit.cache/
+backend/.phpunit.result.cache
+backend/bootstrap/cache/*.php
+!backend/bootstrap/cache/.gitignore
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/testing/*
+backend/storage/framework/views/*.php
+backend/storage/logs/*
+backend/database/*.sqlite
+backend/database/*.sqlite-*
+backend/public/build/
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# Local agent/tool configuration
+**/.agents/
+**/.aws/
+**/.claude/
+**/.codex/
+**/.cursor/
