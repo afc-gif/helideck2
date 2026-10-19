@@ -5,7 +5,10 @@ FROM php:8.3-apache
 RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libonig-dev unzip \
     && docker-php-ext-install -j"$(nproc)" pdo_pgsql opcache \
     && a2dismod mpm_event mpm_worker \
+    && find /etc/apache2/mods-enabled -maxdepth 1 -name 'mpm_*.load' ! -name 'mpm_prefork.load' -delete \
+    && find /etc/apache2/mods-enabled -maxdepth 1 -name 'mpm_*.conf' ! -name 'mpm_prefork.conf' -delete \
     && a2enmod mpm_prefork \
+    && test "$(apache2ctl -M 2>&1 | grep -Ec 'mpm_[[:alnum:]_]+_module')" -eq 1 \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
