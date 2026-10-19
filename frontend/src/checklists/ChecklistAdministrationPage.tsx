@@ -215,6 +215,8 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
   const [publishing, setPublishing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+  const [showFieldPreview, setShowFieldPreview] = useState(false)
+  const [previewPage, setPreviewPage] = useState(0)
   const isDraft = version.status === 'draft'
   const hasDraft = checklist.versions.some((item) => item.status === 'draft')
 
@@ -265,6 +267,7 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
       <div className="editor-actions">
         <span className={`version-badge editor-status ${version.status === 'published' ? 'published-badge' : ''}`}>Version {version.version_number} · {version.status}</span>
         {!hasDraft && <button className="secondary-button" type="button" onClick={onCreateVersion}>Create new draft version</button>}
+        <button className="secondary-button" type="button" onClick={() => { setShowFieldPreview((current) => !current); setPreviewPage(0) }}>{showFieldPreview ? 'Back to editor' : 'Preview field view'}</button>
         <button className="primary-button" type="submit" disabled={saving}>{saving ? 'Saving…' : isDraft ? 'Save draft' : 'Save details'}</button>
       </div>
     </div>
@@ -273,6 +276,7 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
       v{item.version_number} <small>{item.status}</small>
     </button>)}</div>
 
+    {showFieldPreview ? <TemplateFieldPreview checklist={checklist} version={version} sections={sections} page={previewPage} onPageChange={setPreviewPage} /> : <>
     <div className="editor-fields">
       <label>Template name<input value={name} onChange={(event) => setName(event.target.value)} required maxLength={255} /></label>
       <label>Description<textarea value={description} onChange={(event) => setDescription(event.target.value)} rows={2} maxLength={5000} /></label>
@@ -304,11 +308,45 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
           {section.table_blocks.length === 0 && <p className="option-empty">No structured tables in this section.</p>}
         </div>
       </section>)}
+    </>}
 
     {error && <div className="checklist-alert" role="alert">{error}</div>}
     {notice && <div className="checklist-notice" role="status">{notice}</div>}
     {isDraft && <div className="publish-row"><p>Publishing locks this version. To make later changes, create a new draft version.</p><button type="button" className="publish-button" onClick={() => void publish()} disabled={publishing || saving}>{publishing ? 'Publishing…' : 'Publish version'}</button></div>}
   </form>
+}
+
+function TemplateFieldPreview({ checklist, version, sections, page, onPageChange }: {
+  checklist: ChecklistDefinition
+  version: ChecklistVersion
+  sections: ChecklistSection[]
+  page: number
+  onPageChange: (page: number) => void
+}) {
+  const section = sections[page]
+  return <div className="field-preview" aria-label="Field staff questionnaire preview">
+    <div className="field-preview-header"><div><div className="eyebrow">FIELD QUESTIONNAIRE PREVIEW · VERSION {version.version_number}</div><h2>{checklist.name}</h2><p>{checklist.survey_type.name} · Draft preview, not published</p></div></div>
+    {sections.length === 0 ? <div className="content-empty">Add a section to preview the field questionnaire.</div> : <>
+      <div className="field-preview-navigation"><label>Questionnaire page<select value={page} onChange={(event) => onPageChange(Number(event.target.value))}>{sections.map((item, index) => <option key={`${index}-${item.title}`} value={index}>Page {index + 1}: {item.title || 'Untitled section'}</option>)}</select></label><span>Page {page + 1} of {sections.length}</span></div>
+      <div className="field-preview-progress"><span style={{ width: `${((page + 1) / sections.length) * 100}%` }} /></div>
+      {section && <section className="survey-question-section"><div className="survey-section-heading"><h3>{section.title || 'Untitled section'}</h3>{section.description && <p>{section.description}</p>}</div>
+        {section.questions.map((question, index) => <article className="survey-question" key={question.stable_key}>
+          <label>{question.label || `Question ${index + 1}`}{question.is_required && <span className="required-mark"> *</span>}</label>
+          {question.description && <p className="survey-question-description">{question.description}</p>}
+          {question.instructions && <p className="survey-question-instructions">{question.instructions}</p>}
+          {question.field_type === 'informational' ? <div className="survey-information">Information only</div>
+            : question.field_type === 'boolean' || question.field_type === 'single_select' ? <select disabled><option>{question.field_type === 'boolean' ? 'Select…' : 'Select…'}</option>{question.field_type === 'boolean' ? <><option>Yes</option><option>No</option></> : question.options.map((option) => <option key={option.value}>{option.label || option.value}</option>)}</select>
+              : question.field_type === 'multi_select' ? <div className="survey-multi-select">{question.options.map((option) => <label key={option.value}><input type="checkbox" disabled />{option.label || option.value}</label>)}</div>
+                : question.field_type === 'textarea' ? <textarea rows={3} disabled placeholder="Enter response" />
+                  : <input disabled type={question.field_type === 'integer' || question.field_type === 'decimal' ? 'number' : question.field_type === 'date' || question.field_type === 'time' ? question.field_type : 'text'} placeholder="Enter response" />}
+          {question.unit && <small className="survey-unit">Unit: {question.unit}</small>}
+          {question.field_type !== 'informational' && <label className="survey-comment-label">Comment <span>(optional)</span><textarea rows={2} disabled placeholder="Add an observation or context" /></label>}
+        </article>)}
+        {section.table_blocks.map((block) => <div className="survey-table-block" key={block.stable_key}><div className="survey-table-heading"><div><h4>{block.title || 'Untitled table'}</h4>{block.description && <p>{block.description}</p>}</div><button className="secondary-button" type="button" disabled>＋ Add row</button></div><div className="survey-table-scroll"><table><thead><tr>{block.columns.map((column, index) => <th key={column.stable_key}>{column.label || `Column ${index + 1}`}{column.unit && <small> ({column.unit})</small>}{column.source_label && <small>{column.source_label}</small>}</th>)}</tr></thead><tbody><tr><td colSpan={Math.max(block.columns.length, 1)} className="field-preview-empty-row">Rows entered by field staff will appear here.</td></tr></tbody></table></div></div>)}
+      </section>}
+      <div className="field-preview-actions"><button className="secondary-button" type="button" disabled={page === 0} onClick={() => onPageChange(page - 1)}>Previous page</button><span>Answers will be collected one section at a time.</span><button className="secondary-button" type="button" disabled={page >= sections.length - 1} onClick={() => onPageChange(page + 1)}>Next page</button></div>
+    </>}
+  </div>
 }
 
 function QuestionEditor({ question, index, count, editable, onChange, onMove, onRemove }: {

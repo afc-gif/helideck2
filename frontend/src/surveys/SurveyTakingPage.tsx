@@ -26,6 +26,7 @@ export function SurveyTakingPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
+  const [pageIndex, setPageIndex] = useState(0)
 
   useEffect(() => {
     let current = true
@@ -57,6 +58,8 @@ export function SurveyTakingPage() {
     ? versionNumber
     : selectedVersions.at(-1)?.version_number ?? null
   const activeAnswers = useMemo(() => activeSurvey?.answers ?? {}, [activeSurvey])
+  const activePageIndex = Math.min(pageIndex, Math.max(0, (activeSurvey?.sections.length ?? 1) - 1))
+  const activeSection = activeSurvey?.sections[activePageIndex] ?? null
 
   async function refreshSurveys() {
     if (!organizationId) return
@@ -75,6 +78,7 @@ export function SurveyTakingPage() {
         site_name: siteName.trim(),
       })
       setActiveSurvey(created)
+      setPageIndex(0)
       setSiteName('')
       await refreshSurveys()
     } catch (cause) {
@@ -90,6 +94,7 @@ export function SurveyTakingPage() {
     setNotice(null)
     try {
       setActiveSurvey(await api.survey(organizationId, survey.public_id))
+      setPageIndex(0)
     } catch (cause) {
       setError(errorMessage(cause))
     }
@@ -182,8 +187,10 @@ export function SurveyTakingPage() {
       <main className="survey-panel survey-editor-panel">
         {!activeSurvey ? <div className="survey-editor-empty"><span className="empty-icon">▤</span><strong>Choose a survey to resume</strong><span>Starting a survey pins the selected published checklist version.</span></div> : <>
           <div className="survey-editor-header"><div><div className="eyebrow">{activeSurvey.checklist.survey_type === 'offshore-helideck' ? 'OFFSHORE HELIDECK' : 'ONSHORE HELIPORT'} · VERSION {activeSurvey.checklist.version_number}</div><h2>{activeSurvey.site_name}</h2><p>{activeSurvey.checklist.name} · Started {new Date(activeSurvey.started_at).toLocaleDateString()}</p></div><span className={`survey-status ${activeSurvey.status}`}>{activeSurvey.status.replace('_', ' ')}</span></div>
-          {activeSurvey.sections.map((section) => <section className="survey-question-section" key={section.public_id}><div className="survey-section-heading"><h3>{section.title}</h3>{section.description && <p>{section.description}</p>}</div>
-            {section.questions.map((question) => {
+          <div className="survey-page-navigation"><label>Questionnaire page<select value={activePageIndex} onChange={(event) => setPageIndex(Number(event.target.value))}>{activeSurvey.sections.map((section, index) => <option key={section.public_id} value={index}>Page {index + 1}: {section.title}</option>)}</select></label><span>Page {activePageIndex + 1} of {activeSurvey.sections.length}</span></div>
+          <div className="survey-page-progress" role="progressbar" aria-label="Questionnaire pages" aria-valuemin={0} aria-valuemax={activeSurvey.sections.length} aria-valuenow={activePageIndex + 1}><span style={{ width: `${activeSurvey.sections.length ? ((activePageIndex + 1) / activeSurvey.sections.length) * 100 : 0}%` }} /></div>
+          {activeSection && <section className="survey-question-section" key={activeSection.public_id}><div className="survey-section-heading"><h3>{activeSection.title}</h3>{activeSection.description && <p>{activeSection.description}</p>}</div>
+            {activeSection.questions.map((question) => {
               const answer = activeAnswers[question.public_id] ?? { value: emptyValue(question.field_type), comment: null }
               const controlId = `answer-${question.public_id}`
               return <div className="survey-question" key={question.public_id}>
@@ -207,7 +214,7 @@ export function SurveyTakingPage() {
                 {question.field_type !== 'informational' && <label className="survey-comment-label">Comment <span>(optional)</span><textarea rows={2} value={answer.comment ?? ''} onChange={(event) => changeAnswer(question.public_id, { comment: event.target.value || null })} placeholder="Add an observation or context" /></label>}
               </div>
             })}
-            {section.table_blocks.map((block) => {
+            {activeSection.table_blocks.map((block) => {
               const rows = activeSurvey.table_rows[block.public_id] ?? []
               return <div className="survey-table-block" key={block.public_id}><div className="survey-table-heading"><div><h4>{block.title}</h4>{block.description && <p>{block.description}</p>}</div>{activeSurvey.status !== 'completed' && <button className="secondary-button" type="button" onClick={() => addTableRow(block.public_id)}>＋ Add row</button>}</div>
                 <div className="survey-table-scroll"><table><thead><tr>{block.columns.map((column) => <th key={column.public_id}>{column.label}{column.unit && <small> ({column.unit})</small>}{column.source_label && <small className="source-column-label">{column.source_label}</small>}</th>)}{activeSurvey.status !== 'completed' && <th>Row</th>}</tr></thead>
@@ -219,8 +226,8 @@ export function SurveyTakingPage() {
                 </table></div>{activeSurvey.status !== 'completed' && <p className="survey-table-hint">Only entered values are saved. Column types come from this survey’s pinned checklist version.</p>}
               </div>
             })}
-          </section>)}
-          <div className="survey-actions"><span>Answers are saved to this survey’s pinned version.</span><div><button type="button" className="secondary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('in_progress')}>Save progress</button><button type="button" className="primary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('completed')}>{saving ? 'Saving…' : 'Complete survey'}</button></div></div>
+          </section>}
+          <div className="survey-actions"><div className="survey-page-actions"><button type="button" className="secondary-button" disabled={activePageIndex === 0} onClick={() => setPageIndex((current) => Math.max(0, current - 1))}>Previous page</button><button type="button" className="secondary-button" disabled={activePageIndex >= activeSurvey.sections.length - 1} onClick={() => setPageIndex((current) => Math.min(activeSurvey.sections.length - 1, current + 1))}>Next page</button></div><span>Answers are saved to this survey’s pinned version.</span><div><button type="button" className="secondary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('in_progress')}>Save progress</button><button type="button" className="primary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('completed')}>{saving ? 'Saving…' : 'Complete survey'}</button></div></div>
         </>}
       </main>
     </div>
