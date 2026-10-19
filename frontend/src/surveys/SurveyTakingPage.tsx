@@ -105,7 +105,16 @@ export function SurveyTakingPage() {
         const answer = activeAnswers[question.public_id]
         return { question_public_id: question.public_id, value: answer?.value ?? emptyValue(question.field_type), comment: answer?.comment ?? null }
       }))
-      const updated = await api.saveSurveyAnswers(organizationId, activeSurvey.public_id, answers, status)
+      const table_rows = activeSurvey.sections.flatMap((section) => section.table_blocks.map((block) => ({
+        table_public_id: block.public_id,
+        rows: (activeSurvey.table_rows[block.public_id] ?? []).filter((row) => Object.values(row.cells).some((cell) => cell.value !== null && cell.value !== '' && cell.value !== undefined || cell.comment)).map((row) => ({
+          cells: block.columns.flatMap((column) => {
+            const cell = row.cells[column.public_id]
+            return cell ? [{ column_public_id: column.public_id, value: cell.value, comment: cell.comment }] : []
+          }),
+        })),
+      })))
+      const updated = await api.saveSurveyAnswers(organizationId, activeSurvey.public_id, answers, status, table_rows)
       setActiveSurvey(updated)
       setNotice(status === 'completed' ? 'Survey completed and saved.' : 'Progress saved. You can resume this survey later.')
       await refreshSurveys()
@@ -122,6 +131,24 @@ export function SurveyTakingPage() {
       const existing = current.answers[questionId] ?? { value: null, comment: null }
       return { ...current, answers: { ...current.answers, [questionId]: { ...existing, ...patch } } }
     })
+  }
+
+  function changeTableCell(blockId: string, rowIndex: number, columnId: string, patch: Partial<SurveyAnswer>) {
+    setActiveSurvey((current) => {
+      if (!current) return current
+      const rows = [...(current.table_rows[blockId] ?? [])]
+      const row = rows[rowIndex] ?? { public_id: crypto.randomUUID(), cells: {} }
+      rows[rowIndex] = { ...row, cells: { ...row.cells, [columnId]: { value: null, comment: null, ...row.cells[columnId], ...patch } } }
+      return { ...current, table_rows: { ...current.table_rows, [blockId]: rows } }
+    })
+  }
+
+  function addTableRow(blockId: string) {
+    setActiveSurvey((current) => current ? { ...current, table_rows: { ...current.table_rows, [blockId]: [...(current.table_rows[blockId] ?? []), { public_id: crypto.randomUUID(), cells: {} }] } } : current)
+  }
+
+  function removeTableRow(blockId: string, rowIndex: number) {
+    setActiveSurvey((current) => current ? { ...current, table_rows: { ...current.table_rows, [blockId]: (current.table_rows[blockId] ?? []).filter((_, index) => index !== rowIndex) } } : current)
   }
 
   if (loading) return <section className="survey-page"><div className="survey-panel">Loading survey workspace…</div></section>
@@ -178,6 +205,18 @@ export function SurveyTakingPage() {
                           }} />}
                 {question.unit && <small className="survey-unit">Unit: {question.unit}</small>}
                 {question.field_type !== 'informational' && <label className="survey-comment-label">Comment <span>(optional)</span><textarea rows={2} value={answer.comment ?? ''} onChange={(event) => changeAnswer(question.public_id, { comment: event.target.value || null })} placeholder="Add an observation or context" /></label>}
+              </div>
+            })}
+            {section.table_blocks.map((block) => {
+              const rows = activeSurvey.table_rows[block.public_id] ?? []
+              return <div className="survey-table-block" key={block.public_id}><div className="survey-table-heading"><div><h4>{block.title}</h4>{block.description && <p>{block.description}</p>}</div>{activeSurvey.status !== 'completed' && <button className="secondary-button" type="button" onClick={() => addTableRow(block.public_id)}>＋ Add row</button>}</div>
+                <div className="survey-table-scroll"><table><thead><tr>{block.columns.map((column) => <th key={column.public_id}>{column.label}{column.unit && <small> ({column.unit})</small>}{column.source_label && <small className="source-column-label">{column.source_label}</small>}</th>)}{activeSurvey.status !== 'completed' && <th>Row</th>}</tr></thead>
+                  <tbody>{rows.map((row, rowIndex) => <tr key={row.public_id}>{block.columns.map((column) => {
+                    const cell = row.cells[column.public_id] ?? { value: null, comment: null }
+                    const inputType = column.data_type === 'integer' || column.data_type === 'decimal' ? 'number' : column.data_type === 'date' || column.data_type === 'time' ? column.data_type : 'text'
+                    return <td key={column.public_id}>{column.data_type === 'boolean' ? <select disabled={activeSurvey.status === 'completed'} value={cell.value === true ? 'true' : cell.value === false ? 'false' : ''} onChange={(event) => changeTableCell(block.public_id, rowIndex, column.public_id, { value: event.target.value === '' ? null : event.target.value === 'true' })}><option value="">—</option><option value="true">Yes</option><option value="false">No</option></select> : <input type={inputType} step={column.data_type === 'decimal' ? 'any' : column.data_type === 'integer' ? '1' : undefined} disabled={activeSurvey.status === 'completed'} value={cell.value === null || cell.value === undefined ? '' : String(cell.value)} onChange={(event) => { const raw = event.target.value; changeTableCell(block.public_id, rowIndex, column.public_id, { value: raw === '' ? null : column.data_type === 'integer' || column.data_type === 'decimal' ? Number(raw) : raw }) }} />}</td>
+                  })}{activeSurvey.status !== 'completed' && <td><button type="button" className="icon-text-button danger-text" onClick={() => removeTableRow(block.public_id, rowIndex)}>Remove</button></td>}</tr>)}</tbody>
+                </table></div>{activeSurvey.status !== 'completed' && <p className="survey-table-hint">Only entered values are saved. Column types come from this survey’s pinned checklist version.</p>}
               </div>
             })}
           </section>)}

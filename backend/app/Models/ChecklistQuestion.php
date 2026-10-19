@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-#[Fillable(['checklist_section_id', 'stable_key', 'label', 'description', 'instructions', 'field_type', 'is_required', 'validation_rules', 'visibility_condition', 'comment_requirement', 'unit', 'position', 'is_sample'])]
+#[Fillable(['checklist_section_id', 'stable_key', 'label', 'description', 'instructions', 'field_type', 'is_required', 'validation_rules', 'visibility_condition', 'comment_requirement', 'unit', 'position', 'is_sample', 'source_document_identifier', 'source_wording', 'source_locator', 'source_review_status'])]
 class ChecklistQuestion extends Model
 {
     protected static function booted(): void
@@ -26,6 +26,7 @@ class ChecklistQuestion extends Model
             'validation_rules' => 'array',
             'visibility_condition' => 'array',
             'comment_requirement' => 'array',
+            'source_locator' => 'array',
         ];
     }
 

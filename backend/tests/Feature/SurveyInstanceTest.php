@@ -76,6 +76,9 @@ class SurveyInstanceTest extends TestCase
         $organization = Organization::factory()->create();
         $admin = $this->addMember($organization, 'organization_admin');
         [$definition, $versionOne, $questionOne] = $this->publishedTemplate($organization, $admin, 'onshore-heliport', 'text');
+        $sectionOne = $versionOne->sections()->firstOrFail();
+        $originalBlock = $sectionOne->tableBlocks()->create(['checklist_version_id' => $versionOne->getKey(), 'stable_key' => fake()->uuid(), 'title' => 'Original schedule', 'position' => 1]);
+        $originalColumn = $originalBlock->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Original column', 'data_type' => 'text', 'position' => 1]);
         $this->actingAs($admin, 'web');
         $surveyId = $this->postJson($this->surveysPath($organization), [
             'checklist_public_id' => $definition->public_id,
@@ -88,12 +91,17 @@ class SurveyInstanceTest extends TestCase
         $versionTwo = $definition->versions()->create(['version_number' => 2, 'status' => 'published', 'published_at' => now(), 'published_by' => $admin->getKey()]);
         $sectionTwo = $versionTwo->sections()->create(['title' => 'Revised section', 'position' => 1]);
         $sectionTwo->questions()->create(['stable_key' => 'question-v2', 'label' => 'Added in version two', 'field_type' => 'text', 'is_required' => false, 'position' => 1]);
+        $blockTwo = $sectionTwo->tableBlocks()->create(['checklist_version_id' => $versionTwo->getKey(), 'stable_key' => fake()->uuid(), 'title' => 'Revised schedule', 'position' => 1]);
+        $blockTwo->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Revised column', 'data_type' => 'integer', 'position' => 1]);
 
         $this->getJson($this->surveysPath($organization)."/{$surveyId}")
             ->assertOk()
             ->assertJsonPath('data.checklist.version_number', 1)
             ->assertJsonPath('data.checklist.name', $originalTemplateName)
             ->assertJsonPath('data.sections.0.questions.0.public_id', $questionOne->public_id)
+            ->assertJsonPath('data.sections.0.table_blocks.0.public_id', $originalBlock->public_id)
+            ->assertJsonPath('data.sections.0.table_blocks.0.columns.0.public_id', $originalColumn->public_id)
+            ->assertJsonPath('data.sections.0.table_blocks.0.title', 'Original schedule')
             ->assertJsonMissing(['label' => 'Added in version two']);
         $this->assertSame($versionOne->getKey(), SurveyInstance::query()->where('public_id', $surveyId)->value('checklist_version_id'));
     }
@@ -176,6 +184,57 @@ class SurveyInstanceTest extends TestCase
         $this->putJson($path, ['answers' => [['question_public_id' => $question->public_id, 'value' => ['yes']]]])->assertUnprocessable();
         $this->putJson($path, ['answers' => [['question_public_id' => fake()->uuid(), 'value' => 'yes']]])->assertUnprocessable();
         $this->putJson($path, ['answers' => [['question_public_id' => $question->public_id, 'value' => 'yes']]])->assertOk();
+    }
+
+    public function test_inspector_can_save_and_resume_typed_structured_table_rows_for_the_pinned_version(): void
+    {
+        $organization = Organization::factory()->create();
+        $inspector = $this->addMember($organization, 'surveyor');
+        [$definition, $version, $question] = $this->publishedTemplate($organization, $inspector, 'offshore-helideck', 'text');
+        $section = $version->sections()->firstOrFail();
+        $block = $section->tableBlocks()->create(['checklist_version_id' => $version->getKey(), 'stable_key' => fake()->uuid(), 'title' => 'Equipment schedule', 'position' => 1]);
+        $countColumn = $block->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Count', 'data_type' => 'integer', 'position' => 1]);
+        $dateColumn = $block->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Inspection date', 'data_type' => 'date', 'position' => 2]);
+        $this->actingAs($inspector, 'web');
+        $surveyId = $this->createSurvey($organization, $definition, $version);
+        $path = $this->surveysPath($organization)."/{$surveyId}";
+        $tablePayload = [[
+            'table_public_id' => $block->public_id,
+            'rows' => [['cells' => [
+                ['column_public_id' => $countColumn->public_id, 'value' => 4, 'comment' => 'Recorded count'],
+                ['column_public_id' => $dateColumn->public_id, 'value' => '2026-10-18', 'comment' => null],
+            ]]],
+        ]];
+        $this->putJson("{$path}/answers", [
+            'status' => 'in_progress',
+            'answers' => [['question_public_id' => $question->public_id, 'value' => 'Saved question']],
+            'table_rows' => $tablePayload,
+        ])->assertOk()->assertJsonPath("data.table_rows.{$block->public_id}.0.cells.{$countColumn->public_id}.value", 4)
+            ->assertJsonPath("data.table_rows.{$block->public_id}.0.cells.{$countColumn->public_id}.comment", 'Recorded count');
+        $this->getJson($path)->assertOk()->assertJsonPath("data.table_rows.{$block->public_id}.0.cells.{$dateColumn->public_id}.value", '2026-10-18');
+    }
+
+    public function test_structured_cells_reject_wrong_types_and_columns_outside_the_pinned_table(): void
+    {
+        $organization = Organization::factory()->create();
+        $admin = $this->addMember($organization, 'organization_admin');
+        [$definition, $version, $question] = $this->publishedTemplate($organization, $admin, 'onshore-heliport', 'text');
+        $block = $version->sections()->firstOrFail()->tableBlocks()->create(['checklist_version_id' => $version->getKey(), 'stable_key' => fake()->uuid(), 'title' => 'Measurements', 'position' => 1]);
+        $column = $block->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Distance', 'data_type' => 'decimal', 'position' => 1]);
+        $this->actingAs($admin, 'web');
+        $surveyId = $this->createSurvey($organization, $definition, $version);
+        $path = $this->surveysPath($organization)."/{$surveyId}/answers";
+        $this->putJson($path, ['answers' => [], 'table_rows' => [[
+            'table_public_id' => $block->public_id,
+            'rows' => [['cells' => [['column_public_id' => $column->public_id, 'value' => 'not a number']]]],
+        ]]])->assertUnprocessable();
+
+        $otherBlock = $version->sections()->firstOrFail()->tableBlocks()->create(['checklist_version_id' => $version->getKey(), 'stable_key' => fake()->uuid(), 'title' => 'Other table', 'position' => 2]);
+        $otherColumn = $otherBlock->columns()->create(['stable_key' => fake()->uuid(), 'label' => 'Other', 'data_type' => 'text', 'position' => 1]);
+        $this->putJson($path, ['answers' => [], 'table_rows' => [[
+            'table_public_id' => $block->public_id,
+            'rows' => [['cells' => [['column_public_id' => $otherColumn->public_id, 'value' => 'wrong table']]]],
+        ]]])->assertUnprocessable();
     }
 
     public function test_numeric_date_time_boolean_and_multiple_select_values_are_typed(): void

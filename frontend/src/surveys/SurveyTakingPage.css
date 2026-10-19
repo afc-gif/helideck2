@@ -51,3 +51,14 @@
 .secondary-button:disabled, .survey-actions .primary-button:disabled { opacity: .55; cursor: not-allowed; }
 @media (max-width: 900px) { .survey-layout { grid-template-columns: 1fr; } .survey-list { max-height: 250px; } }
 @media (max-width: 560px) { .survey-editor-panel { padding: 17px; } .survey-actions { align-items: stretch; flex-direction: column; margin: 15px -17px -17px; padding: 13px 17px; } .survey-actions > div { display: grid; grid-template-columns: 1fr; } .survey-actions button { width: 100%; justify-content: center; } }
+.survey-table-block { margin-top: 20px; padding: 16px; border: 1px solid #dbe3e8; border-radius: 10px; background: #fbfcfd; }
+.survey-table-heading { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 12px; }
+.survey-table-heading h4 { margin: 0; }
+.survey-table-heading p, .survey-table-hint { margin: 5px 0; color: #657680; font-size: .85rem; }
+.survey-table-scroll { max-width: 100%; overflow-x: auto; }
+.survey-table-block table { width: 100%; border-collapse: collapse; }
+.survey-table-block th, .survey-table-block td { min-width: 120px; padding: 8px; border: 1px solid #dbe3e8; text-align: left; }
+.survey-table-block th { background: #f1f5f7; font-size: .85rem; }
+.survey-table-block th small { display: block; font-weight: 400; color: #526c7a; }
+.survey-table-block td input, .survey-table-block td select { width: 100%; min-width: 100px; }
+.survey-table-hint { margin-top: 10px; }

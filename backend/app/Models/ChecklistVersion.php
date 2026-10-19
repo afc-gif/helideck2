@@ -32,4 +32,10 @@ class ChecklistVersion extends Model
     {
         return $this->hasMany(SurveyInstance::class);
     }
+
+    /** @return HasMany<ChecklistTableBlock, $this> */
+    public function tableBlocks(): HasMany
+    {
+        return $this->hasMany(ChecklistTableBlock::class)->orderBy('position');
+    }
 }

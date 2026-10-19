@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { ApiError, api, type ChecklistDefinition, type ChecklistFieldType, type ChecklistLibrary, type ChecklistOption, type ChecklistQuestion, type ChecklistSection, type ChecklistVersion, type OrganizationSummary } from '../lib/api'
+import { ApiError, api, type ChecklistDefinition, type ChecklistFieldType, type ChecklistLibrary, type ChecklistOption, type ChecklistQuestion, type ChecklistSection, type ChecklistTableBlock, type ChecklistTableColumn, type ChecklistVersion, type OrganizationSummary, type SourceProvenance } from '../lib/api'
 import './ChecklistAdministrationPage.css'
 
 const fieldTypes: { value: ChecklistFieldType; label: string }[] = [
@@ -31,15 +31,21 @@ function cloneSections(sections: ChecklistSection[]): ChecklistSection[] {
   return sections.map((section) => ({
     title: section.title,
     description: section.description ?? '',
+    source_provenance: cloneProvenance(section.source_provenance),
+    table_blocks: (section.table_blocks ?? []).map((block) => ({ ...block, columns: block.columns.map((column) => ({ ...column, source_provenance: cloneProvenance(column.source_provenance) })) })),
     questions: section.questions.map((question) => ({
       ...question,
       description: question.description ?? '',
       instructions: question.instructions ?? '',
       unit: question.unit ?? '',
       options: question.options.map((option) => ({ ...option })),
+      source_provenance: cloneProvenance(question.source_provenance),
     })),
   }))
 }
+
+function blankProvenance(): SourceProvenance { return { document_identifier: '', wording: '', locator: {}, review_status: 'unreviewed' } }
+function cloneProvenance(value?: SourceProvenance): SourceProvenance { return value ? { ...value, locator: { ...(value.locator ?? {}) } } : blankProvenance() }
 
 export function ChecklistAdministrationPage() {
   const [organizations, setOrganizations] = useState<OrganizationSummary[]>([])
@@ -273,7 +279,7 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
     </div>
 
     <div className="version-content-heading"><div><h3>Checklist content</h3><p>{isDraft ? 'Arrange sections and author questions for this draft.' : `Published ${version.published_at ? new Date(version.published_at).toLocaleString() : ''}. This version cannot be edited.`}</p></div>
-      {isDraft && <button className="secondary-button" type="button" onClick={() => setSections((current) => [...current, { title: '', description: '', questions: [] }])}>＋ Add section</button>}
+      {isDraft && <button className="secondary-button" type="button" onClick={() => setSections((current) => [...current, { title: '', description: '', source_provenance: blankProvenance(), questions: [], table_blocks: [] }])}>＋ Add section</button>}
     </div>
 
     {sections.length === 0 ? <div className="content-empty">{isDraft ? 'Add a section to start building this checklist.' : 'This version contains no sections.'}</div>
@@ -287,11 +293,16 @@ function ChecklistEditor({ organizationId, checklist, version, onChange, onSelec
           </> : <strong className="section-title-readonly">{section.title}</strong>}
         </div>
         {isDraft && <label className="section-description-label">Section description<textarea value={section.description ?? ''} rows={2} maxLength={5000} onChange={(event) => updateSection(sectionIndex, { ...section, description: event.target.value })} /></label>}
+        <ProvenanceEditor value={section.source_provenance} editable={isDraft} onChange={(source_provenance) => updateSection(sectionIndex, { ...section, source_provenance })} />
         <div className="question-editor-list">{section.questions.map((question, questionIndex) => <QuestionEditor key={question.stable_key} question={question} index={questionIndex} count={section.questions.length} editable={isDraft}
           onChange={(updatedQuestion) => updateSection(sectionIndex, { ...section, questions: section.questions.map((current, index) => index === questionIndex ? updatedQuestion : current) })}
           onMove={(direction) => updateSection(sectionIndex, { ...section, questions: moveItem(section.questions, questionIndex, direction) })}
           onRemove={() => updateSection(sectionIndex, { ...section, questions: section.questions.filter((_, index) => index !== questionIndex) })} />)}</div>
         {isDraft && <button className="add-question-button" type="button" onClick={() => updateSection(sectionIndex, { ...section, questions: [...section.questions, newQuestion()] })}>＋ Add question</button>}
+        <div className="structured-blocks"><div className="response-options-heading"><strong>Structured tables</strong>{isDraft && <button className="text-link" type="button" onClick={() => updateSection(sectionIndex, { ...section, table_blocks: [...section.table_blocks, newTableBlock()] })}>＋ Add table</button>}</div>
+          {section.table_blocks.map((block, blockIndex) => <TableBlockEditor key={block.stable_key} block={block} index={blockIndex} count={section.table_blocks.length} editable={isDraft} onChange={(updated) => updateSection(sectionIndex, { ...section, table_blocks: section.table_blocks.map((item, index) => index === blockIndex ? updated : item) })} onMove={(direction) => updateSection(sectionIndex, { ...section, table_blocks: moveItem(section.table_blocks, blockIndex, direction) })} onRemove={() => updateSection(sectionIndex, { ...section, table_blocks: section.table_blocks.filter((_, index) => index !== blockIndex) })} />)}
+          {section.table_blocks.length === 0 && <p className="option-empty">No structured tables in this section.</p>}
+        </div>
       </section>)}
 
     {error && <div className="checklist-alert" role="alert">{error}</div>}
@@ -334,7 +345,38 @@ function QuestionEditor({ question, index, count, editable, onChange, onMove, on
         onChange={(updatedOption) => onChange({ ...question, options: question.options.map((current, currentIndex) => currentIndex === optionIndex ? updatedOption : current) })}
         onRemove={() => onChange({ ...question, options: question.options.filter((_, currentIndex) => currentIndex !== optionIndex) })} />)}
     </div>}
+    <ProvenanceEditor value={question.source_provenance} editable={editable} onChange={(source_provenance) => onChange({ ...question, source_provenance })} />
   </article>
+}
+
+function ProvenanceEditor({ value, editable, onChange }: { value?: SourceProvenance; editable: boolean; onChange: (next: SourceProvenance) => void }) {
+  const source = cloneProvenance(value)
+  const set = (patch: Partial<SourceProvenance>) => onChange({ ...source, ...patch })
+  const setLocator = (key: string, locatorValue: string) => set({ locator: { ...(source.locator ?? {}), [key]: locatorValue } })
+  return <details className="provenance-editor"><summary>Source provenance · {source.review_status.replace('_', ' ')}</summary><div className="provenance-fields">
+    <label>Source document identifier<input value={source.document_identifier ?? ''} readOnly={!editable} onChange={(event) => set({ document_identifier: event.target.value })} placeholder="Approved source file" /></label>
+    <label>Original wording<textarea value={source.wording ?? ''} readOnly={!editable} rows={2} onChange={(event) => set({ wording: event.target.value })} /></label>
+    {['section', 'table', 'row', 'cell', 'page'].map((key) => <label key={key}>{key === 'page' ? 'Page (only if verified)' : `Source ${key}`}<input value={source.locator?.[key] ?? ''} readOnly={!editable} onChange={(event) => setLocator(key, event.target.value)} /></label>)}
+    <label>Review status<select value={source.review_status} disabled={!editable} onChange={(event) => set({ review_status: event.target.value as SourceProvenance['review_status'] })}><option value="unreviewed">Unreviewed</option><option value="review_required">Review required</option><option value="reviewed">Reviewed</option></select></label>
+  </div><small>Use only traceable source locations. Leave page blank when the page is not verified.</small></details>
+}
+
+function TableBlockEditor({ block, index, count, editable, onChange, onMove, onRemove }: { block: ChecklistTableBlock; index: number; count: number; editable: boolean; onChange: (block: ChecklistTableBlock) => void; onMove: (direction: number) => void; onRemove: () => void }) {
+  const dataTypes: ChecklistTableColumn['data_type'][] = ['text', 'integer', 'decimal', 'date', 'time', 'boolean']
+  return <article className="table-block-editor"><div className="table-block-heading"><label>Table title<input value={block.title} readOnly={!editable} required onChange={(event) => onChange({ ...block, title: event.target.value })} /></label>{editable && <div><button className="icon-text-button" type="button" disabled={index === 0} onClick={() => onMove(-1)} aria-label="Move table up">↑</button><button className="icon-text-button" type="button" disabled={index === count - 1} onClick={() => onMove(1)} aria-label="Move table down">↓</button><button className="icon-text-button danger-text" type="button" onClick={onRemove}>Remove table</button></div>}</div>
+    <label>Description<textarea rows={2} value={block.description ?? ''} readOnly={!editable} onChange={(event) => onChange({ ...block, description: event.target.value })} /></label>
+    {block.columns.map((column, index) => <div className="table-column-editor" key={column.stable_key}><div className="provenance-fields">
+      <label>Column label<input value={column.label} readOnly={!editable} required onChange={(event) => updateColumn(index, { label: event.target.value })} /></label>
+      <label>Original source label<input value={column.source_label ?? ''} readOnly={!editable} onChange={(event) => updateColumn(index, { source_label: event.target.value })} /></label>
+      <label>Data type<select value={column.data_type} disabled={!editable} onChange={(event) => updateColumn(index, { data_type: event.target.value as ChecklistTableColumn['data_type'] })}>{dataTypes.map((type) => <option key={type} value={type}>{type}</option>)}</select></label>
+      <label>Unit<input value={column.unit ?? ''} readOnly={!editable} onChange={(event) => updateColumn(index, { unit: event.target.value })} /></label>
+      {editable && <><button className="icon-text-button" type="button" disabled={index === 0} onClick={() => onChange({ ...block, columns: moveItem(block.columns, index, -1) })} aria-label="Move column up">↑</button><button className="icon-text-button" type="button" disabled={index === block.columns.length - 1} onClick={() => onChange({ ...block, columns: moveItem(block.columns, index, 1) })} aria-label="Move column down">↓</button><button className="icon-text-button danger-text" type="button" onClick={() => onChange({ ...block, columns: block.columns.filter((_, itemIndex) => itemIndex !== index) })}>Remove column</button></>}
+      </div><ProvenanceEditor value={column.source_provenance} editable={editable} onChange={(source_provenance) => updateColumn(index, { source_provenance })} />
+      </div>)
+    }
+    {editable && <button className="text-link" type="button" onClick={() => onChange({ ...block, columns: [...block.columns, newTableColumn()] })}>＋ Add column</button>}
+  </article>
+  function updateColumn(index: number, patch: Partial<ChecklistTableColumn>) { onChange({ ...block, columns: block.columns.map((column, itemIndex) => itemIndex === index ? { ...column, ...patch } : column) }) }
 }
 
 function OptionEditor({ option, index, editable, onChange, onRemove }: {
@@ -358,8 +400,12 @@ function newQuestion(): ChecklistQuestion {
     is_required: false,
     unit: '',
     options: [],
+    source_provenance: blankProvenance(),
   }
 }
+
+function newTableColumn(): ChecklistTableColumn { return { stable_key: crypto.randomUUID(), label: '', source_label: '', data_type: 'text', unit: '', source_provenance: blankProvenance() } }
+function newTableBlock(): ChecklistTableBlock { return { stable_key: crypto.randomUUID(), title: '', description: '', columns: [newTableColumn()] } }
 
 function moveItem<T>(items: T[], index: number, direction: number): T[] {
   const nextIndex = index + direction

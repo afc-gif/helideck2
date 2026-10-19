@@ -58,4 +58,10 @@ class SurveyInstance extends Model
     {
         return $this->hasMany(SurveyAnswer::class);
     }
+
+    /** @return HasMany<SurveyTableRow, $this> */
+    public function tableRows(): HasMany
+    {
+        return $this->hasMany(SurveyTableRow::class)->orderBy('checklist_table_block_id')->orderBy('position');
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\AnswerOption;
 use App\Models\ChecklistDefinition;
 use App\Models\ChecklistQuestion;
 use App\Models\ChecklistSection;
+use App\Models\ChecklistTableBlock;
 use App\Models\ChecklistVersion;
 use App\Models\Organization;
 use App\Models\SurveyType;
@@ -34,7 +35,7 @@ class ChecklistAdministrationController extends Controller
         $surveyTypes = $this->ensureSurveyTypes($organization);
 
         $checklists = $organization->checklistDefinitions()
-            ->with(['surveyType', 'versions.sections.questions.options'])
+            ->with(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns'])
             ->orderBy('name')
             ->get();
 
@@ -66,7 +67,7 @@ class ChecklistAdministrationController extends Controller
             return $definition;
         });
 
-        $definition->load(['surveyType', 'versions.sections.questions.options']);
+        $definition->load(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns']);
 
         return response()->json(['data' => $this->definitionData($definition)], 201);
     }
@@ -86,7 +87,7 @@ class ChecklistAdministrationController extends Controller
         $organization = $this->organizationForManagement($publicId);
         $definition = $organization->checklistDefinitions()->where('public_id', $checklistPublicId)->firstOrFail();
         $definition->update($request->validated());
-        $definition->load(['surveyType', 'versions.sections.questions.options']);
+        $definition->load(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns']);
 
         return response()->json(['data' => $this->definitionData($definition)]);
     }
@@ -104,7 +105,7 @@ class ChecklistAdministrationController extends Controller
             }
 
             $previousVersion = $lockedDefinition->versions()
-                ->with(['sections.questions.options'])
+                ->with(['sections.questions.options', 'sections.tableBlocks.columns'])
                 ->orderByDesc('version_number')
                 ->first();
             $newVersion = $lockedDefinition->versions()->create([
@@ -123,7 +124,7 @@ class ChecklistAdministrationController extends Controller
             return $result;
         }
 
-        $definition->load(['surveyType', 'versions.sections.questions.options']);
+        $definition->load(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns']);
 
         return response()->json(['data' => $this->definitionData($definition)], 201);
     }
@@ -136,6 +137,14 @@ class ChecklistAdministrationController extends Controller
 
         if ($version->status !== 'draft') {
             return response()->json(['message' => 'Published checklist versions are immutable. Create a new draft version to make changes.'], 409);
+        }
+
+        $hasExistingTables = $version->sections()->whereHas('tableBlocks')->exists();
+        $omitsStructuredTables = collect($request->input('sections', []))->contains(
+            fn (array $section): bool => ! array_key_exists('table_blocks', $section),
+        );
+        if ($hasExistingTables && $omitsStructuredTables) {
+            return response()->json(['message' => 'This draft contains structured tables. Refresh the checklist editor before saving to preserve them.'], 409);
         }
 
         DB::transaction(function () use ($version, $request): void {
@@ -152,6 +161,7 @@ class ChecklistAdministrationController extends Controller
                     'title' => $sectionData['title'],
                     'description' => $sectionData['description'] ?? null,
                     'position' => $sectionPosition + 1,
+                    ...$this->sourceAttributes($sectionData['source_provenance'] ?? []),
                 ]);
 
                 foreach ($sectionData['questions'] as $questionPosition => $questionData) {
@@ -164,6 +174,7 @@ class ChecklistAdministrationController extends Controller
                         'is_required' => $questionData['is_required'],
                         'unit' => $questionData['unit'] ?? null,
                         'position' => $questionPosition + 1,
+                        ...$this->sourceAttributes($questionData['source_provenance'] ?? []),
                     ]);
 
                     foreach ($questionData['options'] as $optionPosition => $optionData) {
@@ -171,6 +182,28 @@ class ChecklistAdministrationController extends Controller
                             'value' => $optionData['value'],
                             'label' => $optionData['label'],
                             'position' => $optionPosition + 1,
+                        ]);
+                    }
+                }
+
+                foreach ($sectionData['table_blocks'] ?? [] as $blockPosition => $blockData) {
+                    $block = $section->tableBlocks()->create([
+                        'checklist_version_id' => $lockedVersion->getKey(),
+                        'stable_key' => $blockData['stable_key'] ?? (string) Str::uuid(),
+                        'title' => $blockData['title'],
+                        'description' => $blockData['description'] ?? null,
+                        'position' => $blockPosition + 1,
+                    ]);
+
+                    foreach ($blockData['columns'] as $columnPosition => $columnData) {
+                        $block->columns()->create([
+                            'stable_key' => $columnData['stable_key'] ?? (string) Str::uuid(),
+                            'label' => $columnData['label'],
+                            'source_label' => $columnData['source_label'] ?? null,
+                            'data_type' => $columnData['data_type'],
+                            'unit' => $columnData['unit'] ?? null,
+                            'position' => $columnPosition + 1,
+                            ...$this->sourceAttributes($columnData['source_provenance'] ?? []),
                         ]);
                     }
                 }
@@ -192,8 +225,11 @@ class ChecklistAdministrationController extends Controller
             return response()->json(['message' => 'Only draft checklist versions can be published.'], 409);
         }
 
-        if (! $version->sections()->whereHas('questions')->exists()) {
-            return response()->json(['message' => 'Add at least one section with a question before publishing.'], 422);
+        $hasQuestions = $version->sections()->whereHas('questions')->exists();
+        $hasStructuredColumns = $version->sections()->whereHas('tableBlocks.columns')->exists();
+
+        if (! $hasQuestions && ! $hasStructuredColumns) {
+            return response()->json(['message' => 'Add at least one section with a question or structured table with columns before publishing.'], 422);
         }
 
         $version->update([
@@ -234,7 +270,7 @@ class ChecklistAdministrationController extends Controller
     private function definitionQuery(Organization $organization): HasMany
     {
         return $organization->checklistDefinitions()
-            ->with(['surveyType', 'versions.sections.questions.options']);
+            ->with(['surveyType', 'versions.sections.questions.options', 'versions.sections.tableBlocks.columns']);
     }
 
     /** @return array<string, mixed> */
@@ -264,6 +300,7 @@ class ChecklistAdministrationController extends Controller
             'sections' => $version->sections->sortBy('position')->values()->map(fn (ChecklistSection $section): array => [
                 'title' => $section->title,
                 'description' => $section->description,
+                'source_provenance' => $this->provenanceData($section),
                 'questions' => $section->questions->sortBy('position')->values()->map(fn (ChecklistQuestion $question): array => [
                     'stable_key' => $question->stable_key,
                     'label' => $question->label,
@@ -272,9 +309,25 @@ class ChecklistAdministrationController extends Controller
                     'field_type' => $question->field_type,
                     'is_required' => $question->is_required,
                     'unit' => $question->unit,
+                    'source_provenance' => $this->provenanceData($question),
                     'options' => $question->options->sortBy('position')->values()->map(fn (AnswerOption $option): array => [
                         'value' => $option->value,
                         'label' => $option->label,
+                    ])->all(),
+                ])->all(),
+                'table_blocks' => $section->tableBlocks->sortBy('position')->values()->map(fn (ChecklistTableBlock $block): array => [
+                    'public_id' => $block->public_id,
+                    'stable_key' => $block->stable_key,
+                    'title' => $block->title,
+                    'description' => $block->description,
+                    'columns' => $block->columns->sortBy('position')->values()->map(fn ($column): array => [
+                        'public_id' => $column->public_id,
+                        'stable_key' => $column->stable_key,
+                        'label' => $column->label,
+                        'source_label' => $column->source_label,
+                        'data_type' => $column->data_type,
+                        'unit' => $column->unit,
+                        'source_provenance' => $this->provenanceData($column),
                     ])->all(),
                 ])->all(),
             ])->all(),
@@ -288,6 +341,7 @@ class ChecklistAdministrationController extends Controller
                 'title' => $sourceSection->title,
                 'description' => $sourceSection->description,
                 'position' => $sourceSection->position,
+                ...$this->sourceAttributes($this->provenanceData($sourceSection)),
             ]);
 
             foreach ($sourceSection->questions as $sourceQuestion) {
@@ -304,6 +358,7 @@ class ChecklistAdministrationController extends Controller
                     'unit' => $sourceQuestion->unit,
                     'position' => $sourceQuestion->position,
                     'is_sample' => $sourceQuestion->is_sample,
+                    ...$this->sourceAttributes($this->provenanceData($sourceQuestion)),
                 ]);
 
                 foreach ($sourceQuestion->options as $sourceOption) {
@@ -314,6 +369,52 @@ class ChecklistAdministrationController extends Controller
                     ]);
                 }
             }
+
+            foreach ($sourceSection->tableBlocks as $sourceBlock) {
+                $block = $section->tableBlocks()->create([
+                    'checklist_version_id' => $target->getKey(),
+                    'stable_key' => $sourceBlock->stable_key,
+                    'title' => $sourceBlock->title,
+                    'description' => $sourceBlock->description,
+                    'position' => $sourceBlock->position,
+                ]);
+
+                foreach ($sourceBlock->columns as $sourceColumn) {
+                    $block->columns()->create([
+                        'stable_key' => $sourceColumn->stable_key,
+                        'label' => $sourceColumn->label,
+                        'source_label' => $sourceColumn->source_label,
+                        'data_type' => $sourceColumn->data_type,
+                        'unit' => $sourceColumn->unit,
+                        'position' => $sourceColumn->position,
+                        ...$this->sourceAttributes($this->provenanceData($sourceColumn)),
+                    ]);
+                }
+            }
         }
+    }
+
+    /** @param array<string, mixed> $provenance
+     * @return array<string, mixed>
+     */
+    private function sourceAttributes(array $provenance): array
+    {
+        return [
+            'source_document_identifier' => $provenance['document_identifier'] ?? null,
+            'source_wording' => $provenance['wording'] ?? null,
+            'source_locator' => $provenance['locator'] ?? null,
+            'source_review_status' => $provenance['review_status'] ?? 'unreviewed',
+        ];
+    }
+
+    /** @return array<string, mixed> */
+    private function provenanceData(object $record): array
+    {
+        return [
+            'document_identifier' => $record->source_document_identifier,
+            'wording' => $record->source_wording,
+            'locator' => $record->source_locator,
+            'review_status' => $record->source_review_status,
+        ];
     }
 }

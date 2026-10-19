@@ -14,6 +14,9 @@ export type AuthUser = {
 export type ChecklistFieldType = 'text' | 'textarea' | 'integer' | 'decimal' | 'date' | 'time' | 'boolean' | 'single_select' | 'multi_select' | 'informational'
 
 export type ChecklistOption = { value: string; label: string }
+export type SourceProvenance = { document_identifier: string | null; wording: string | null; locator: Record<string, string> | null; review_status: 'unreviewed' | 'review_required' | 'reviewed' }
+export type ChecklistTableColumn = { public_id?: string; stable_key: string; label: string; source_label: string | null; data_type: 'text' | 'integer' | 'decimal' | 'date' | 'time' | 'boolean'; unit: string | null; source_provenance: SourceProvenance }
+export type ChecklistTableBlock = { public_id?: string; stable_key: string; title: string; description: string | null; columns: ChecklistTableColumn[] }
 export type ChecklistQuestion = {
   stable_key: string
   label: string
@@ -23,8 +26,9 @@ export type ChecklistQuestion = {
   is_required: boolean
   unit: string | null
   options: ChecklistOption[]
+  source_provenance: SourceProvenance
 }
-export type ChecklistSection = { title: string; description: string | null; questions: ChecklistQuestion[] }
+export type ChecklistSection = { title: string; description: string | null; source_provenance: SourceProvenance; questions: ChecklistQuestion[]; table_blocks: ChecklistTableBlock[] }
 export type ChecklistVersion = {
   version_number: number
   status: 'draft' | 'published'
@@ -50,8 +54,9 @@ export type SurveyTemplate = {
   versions: { version_number: number; published_at: string | null }[]
 }
 export type SurveyQuestion = ChecklistQuestion & { public_id: string }
-export type SurveySection = { public_id: string; title: string; description: string | null; questions: SurveyQuestion[] }
+export type SurveySection = { public_id: string; title: string; description: string | null; source_provenance: SourceProvenance; questions: SurveyQuestion[]; table_blocks: (ChecklistTableBlock & { public_id: string; columns: (ChecklistTableColumn & { public_id: string })[] })[] }
 export type SurveyAnswer = { value: unknown; comment: string | null }
+export type SurveyTableRow = { public_id: string; cells: Record<string, SurveyAnswer> }
 export type SurveySummary = {
   public_id: string
   site_name: string
@@ -61,7 +66,7 @@ export type SurveySummary = {
   checklist: { public_id: string; name: string; survey_type: string; version_number: number }
   assignee: { id: number; name: string } | null
 }
-export type SurveyInstance = SurveySummary & { sections: SurveySection[]; answers: Record<string, SurveyAnswer> }
+export type SurveyInstance = SurveySummary & { sections: SurveySection[]; answers: Record<string, SurveyAnswer>; table_rows: Record<string, SurveyTableRow[]> }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '')
 
@@ -200,10 +205,10 @@ export const api = {
   async survey(organizationPublicId: string, surveyPublicId: string): Promise<SurveyInstance> {
     return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(surveyPublicId)}`)).data
   },
-  async saveSurveyAnswers(organizationPublicId: string, surveyPublicId: string, answers: { question_public_id: string; value: unknown; comment: string | null }[], status: 'in_progress' | 'completed'): Promise<SurveyInstance> {
+  async saveSurveyAnswers(organizationPublicId: string, surveyPublicId: string, answers: { question_public_id: string; value: unknown; comment: string | null }[], status: 'in_progress' | 'completed', table_rows: { table_public_id: string; rows: { cells: { column_public_id: string; value: unknown; comment: string | null }[] }[] }[]): Promise<SurveyInstance> {
     return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(surveyPublicId)}/answers`, {
       method: 'PUT',
-      body: JSON.stringify({ answers, status }),
+      body: JSON.stringify({ answers, status, table_rows }),
     })).data
   },
 }

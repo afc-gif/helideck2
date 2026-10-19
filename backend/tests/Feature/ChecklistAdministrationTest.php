@@ -84,7 +84,9 @@ class ChecklistAdministrationTest extends TestCase
         ])->assertCreated()->json('data.public_id');
 
         $this->putJson("{$basePath}/{$checklist}/versions/1", $this->validContent('Original prompt'))
-            ->assertOk();
+            ->assertOk()
+            ->assertJsonPath('data.versions.0.sections.0.source_provenance.document_identifier', 'HELIDECK REPORT FSO TOPAZ.docx')
+            ->assertJsonPath('data.versions.0.sections.0.table_blocks.0.columns.0.source_provenance.review_status', 'review_required');
         $this->postJson("{$basePath}/{$checklist}/versions/1/publish")
             ->assertOk()
             ->assertJsonPath('data.versions.0.status', 'published');
@@ -93,7 +95,13 @@ class ChecklistAdministrationTest extends TestCase
             ->assertCreated()
             ->assertJsonPath('data.versions.1.version_number', 2)
             ->assertJsonPath('data.versions.1.status', 'draft')
-            ->assertJsonPath('data.versions.1.sections.0.questions.0.label', 'Original prompt');
+            ->assertJsonPath('data.versions.1.sections.0.questions.0.label', 'Original prompt')
+            ->assertJsonPath('data.versions.1.sections.0.table_blocks.0.title', 'Technical schedule')
+            ->assertJsonPath('data.versions.1.sections.0.table_blocks.0.columns.0.source_provenance.wording', 'Original measurement wording');
+
+        $legacyPayload = $this->validContent('Legacy editor prompt');
+        unset($legacyPayload['sections'][0]['table_blocks']);
+        $this->putJson("{$basePath}/{$checklist}/versions/2", $legacyPayload)->assertStatus(409);
 
         $this->putJson("{$basePath}/{$checklist}/versions/2", $this->validContent('Revised prompt'))
             ->assertOk()
@@ -125,12 +133,13 @@ class ChecklistAdministrationTest extends TestCase
                     'is_required' => true,
                     'options' => [],
                 ]],
+                'table_blocks' => [],
             ]],
         ])->assertUnprocessable();
 
         $this->postJson("{$basePath}/{$checklist}/versions/1/publish")
             ->assertUnprocessable()
-            ->assertJsonPath('message', 'Add at least one section with a question before publishing.');
+            ->assertJsonPath('message', 'Add at least one section with a question or structured table with columns before publishing.');
     }
 
     public function test_only_one_draft_version_can_exist_at_a_time(): void
@@ -154,6 +163,12 @@ class ChecklistAdministrationTest extends TestCase
             'sections' => [[
                 'title' => 'Section one',
                 'description' => null,
+                'source_provenance' => [
+                    'document_identifier' => 'HELIDECK REPORT FSO TOPAZ.docx',
+                    'wording' => 'Section wording from approved source',
+                    'locator' => ['table' => '6', 'row' => '1', 'cell' => 'A'],
+                    'review_status' => 'reviewed',
+                ],
                 'questions' => [[
                     'stable_key' => 'e544a5a5-4d7c-49c7-a3f4-2d34c131f23a',
                     'label' => $label,
@@ -163,6 +178,17 @@ class ChecklistAdministrationTest extends TestCase
                     'is_required' => true,
                     'unit' => null,
                     'options' => [],
+                    'source_provenance' => ['document_identifier' => 'HELIDECK REPORT FSO TOPAZ.docx', 'wording' => 'Original question wording', 'locator' => ['table' => '7', 'row' => '2'], 'review_status' => 'reviewed'],
+                ]],
+                'table_blocks' => [[
+                    'stable_key' => 'a45c9cf2-6a63-4cc2-bbaa-b120ea75d39a',
+                    'title' => 'Technical schedule',
+                    'description' => 'Repeatable structured rows.',
+                    'columns' => [[
+                        'stable_key' => '1ef300fa-1e8f-4b06-b63b-f8c412f542e9',
+                        'label' => 'Dimension', 'source_label' => 'D/T', 'data_type' => 'decimal', 'unit' => 'm',
+                        'source_provenance' => ['document_identifier' => 'HELIDECK REPORT FSO TOPAZ.docx', 'wording' => 'Original measurement wording', 'locator' => ['table' => '6', 'row' => '3', 'cell' => 'B'], 'review_status' => 'review_required'],
+                    ]],
                 ]],
             ]],
         ];

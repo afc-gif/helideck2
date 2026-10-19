@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-#[Fillable(['checklist_version_id', 'title', 'description', 'position'])]
+#[Fillable(['checklist_version_id', 'title', 'description', 'position', 'source_document_identifier', 'source_wording', 'source_locator', 'source_review_status'])]
 class ChecklistSection extends Model
 {
     protected static function booted(): void
@@ -16,6 +16,11 @@ class ChecklistSection extends Model
         static::creating(function (ChecklistSection $section): void {
             $section->public_id ??= (string) Str::uuid();
         });
+    }
+
+    protected function casts(): array
+    {
+        return ['source_locator' => 'array'];
     }
 
     /** @return BelongsTo<ChecklistVersion, $this> */
@@ -28,5 +33,11 @@ class ChecklistSection extends Model
     public function questions(): HasMany
     {
         return $this->hasMany(ChecklistQuestion::class)->orderBy('position');
+    }
+
+    /** @return HasMany<ChecklistTableBlock, $this> */
+    public function tableBlocks(): HasMany
+    {
+        return $this->hasMany(ChecklistTableBlock::class)->orderBy('position');
     }
 }

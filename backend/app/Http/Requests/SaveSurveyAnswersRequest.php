@@ -28,6 +28,13 @@ class SaveSurveyAnswersRequest extends FormRequest
             'answers.*.question_public_id' => ['required', 'uuid', 'distinct'],
             'answers.*.value' => ['present'],
             'answers.*.comment' => ['nullable', 'string', 'max:10000'],
+            'table_rows' => ['sometimes', 'array', 'max:50'],
+            'table_rows.*.table_public_id' => ['required', 'uuid'],
+            'table_rows.*.rows' => ['required', 'array', 'max:200'],
+            'table_rows.*.rows.*.cells' => ['required', 'array', 'max:50'],
+            'table_rows.*.rows.*.cells.*.column_public_id' => ['required', 'uuid'],
+            'table_rows.*.rows.*.cells.*.value' => ['present'],
+            'table_rows.*.rows.*.cells.*.comment' => ['nullable', 'string', 'max:10000'],
         ];
     }
 }
