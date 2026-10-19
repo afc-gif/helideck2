@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter, Link, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { useAuth } from './auth/AuthContext'
-import { apiUrl } from './lib/api'
+import { api, apiUrl, type SurveySummary } from './lib/api'
 import { LoginPage } from './auth/LoginPage'
 import { ProtectedRoute } from './auth/ProtectedRoute'
 import { ChecklistAdministrationPage } from './checklists/ChecklistAdministrationPage'
 import { SurveyTakingPage } from './surveys/SurveyTakingPage'
 import './App.css'
-
-const pageLoadDate = new Date()
 
 const navigation: { label: string; path: string; icon: string; permission?: string[] }[] = [
   { label: 'Dashboard', path: '/', icon: '▦' },
@@ -100,39 +98,85 @@ function ApiStatus() {
 
 function Dashboard() {
   const { user } = useAuth()
+  const [surveys, setSurveys] = useState<SurveySummary[]>([])
+  const [loadingSurveys, setLoadingSurveys] = useState(true)
+  const [surveyError, setSurveyError] = useState<string | null>(null)
+  const [currentDate] = useState(() => new Date())
   const firstName = user?.name.trim().split(/\s+/)[0] ?? 'there'
-  const today = new Intl.DateTimeFormat(undefined, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(pageLoadDate).toUpperCase()
-  const thisMonth = new Intl.DateTimeFormat(undefined, { month: 'long', year: 'numeric' }).format(pageLoadDate)
+  const today = new Intl.DateTimeFormat(undefined, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(currentDate)
+  const greeting = currentDate.getHours() < 12 ? 'Good morning' : currentDate.getHours() < 18 ? 'Good afternoon' : 'Good evening'
+  const canViewSurveys = Boolean(user?.is_super_admin || user?.memberships.some((membership) => membership.permissions.some((permission) => ['inspections.manage', 'inspections.assigned.view'].includes(permission))))
+  const canManageChecklists = Boolean(user?.is_super_admin || user?.memberships.some((membership) => membership.permissions.includes('checklists.manage')))
+  const metrics = useMemo(() => {
+    return {
+      active: surveys.filter((survey) => survey.status === 'in_progress').length,
+      completed: surveys.filter((survey) => {
+        if (survey.status !== 'completed' || !survey.completed_at) return false
+        const completed = new Date(survey.completed_at)
+        return completed.getMonth() === currentDate.getMonth() && completed.getFullYear() === currentDate.getFullYear()
+      }).length,
+      total: surveys.length,
+    }
+  }, [currentDate, surveys])
+
+  useEffect(() => {
+    let active = true
+    async function loadSurveys() {
+      setLoadingSurveys(true)
+      setSurveyError(null)
+      try {
+        if (!canViewSurveys || !user) {
+          if (active) setSurveys([])
+          return
+        }
+        const organizationIds = user.is_super_admin
+          ? (await api.organizations()).map((organization) => organization.public_id)
+          : [...new Set(user.memberships.filter((membership) => membership.permissions.some((permission) => ['inspections.manage', 'inspections.assigned.view'].includes(permission))).map((membership) => membership.organization.public_id))]
+        const results = await Promise.all(organizationIds.map((organizationId) => api.surveys(organizationId)))
+        if (active) setSurveys(results.flat().sort((first, second) => new Date(second.started_at).getTime() - new Date(first.started_at).getTime()))
+      } catch {
+        if (active) setSurveyError('Inspection activity could not be loaded. Try refreshing the page.')
+      } finally {
+        if (active) setLoadingSurveys(false)
+      }
+    }
+    void loadSurveys()
+    return () => { active = false }
+  }, [canViewSurveys, user])
+
+  const recentSurveys = surveys.slice(0, 5)
   return (
-    <>
-      <div className="page-heading">
-        <div><div className="eyebrow">{today}</div><h1>Good morning, {firstName}</h1><p>Here’s the latest across your survey operations.</p></div>
-        <NavLink className="primary-button" to="/inspections"><span>＋</span> New inspection</NavLink>
+    <section className="dashboard-page">
+      <div className="dashboard-hero">
+        <div className="dashboard-hero-copy"><div className="eyebrow">OPERATIONS OVERVIEW <span className="hero-eyebrow-divider">·</span> {today.toUpperCase()}</div><h1>{greeting}, {firstName}</h1><p>A clear view of inspections and tools available in your workspace.</p>
+          <div className="dashboard-hero-actions">{canViewSurveys && <NavLink className="primary-button" to="/inspections"><span>＋</span> Start an inspection</NavLink>}{canManageChecklists && <NavLink className="hero-secondary-link" to="/checklists">Manage checklists <span>↗</span></NavLink>}</div>
+        </div>
+        <div className="dashboard-hero-side"><span className="hero-side-label">SIGNED IN AS</span><strong>{user?.is_super_admin ? 'Platform administrator' : user?.memberships[0]?.role.replaceAll('_', ' ') ?? 'Member'}</strong><span>{user?.is_super_admin ? 'Platform-wide access' : `${user?.memberships.length ?? 0} organization ${(user?.memberships.length ?? 0) === 1 ? 'workspace' : 'workspaces'}`}</span></div>
       </div>
-      <section className="stat-grid" aria-label="Inspection statistics">
-        <StatCard label="Active inspections" value="0" note="Across all locations" icon="◉" accent="blue" />
-        <StatCard label="My assignments" value="0" note="Ready for fieldwork" icon="⌖" accent="green" />
-        <StatCard label="Pending review" value="0" note="Awaiting your review" icon="◷" accent="amber" />
-        <StatCard label="Approved this month" value="0" note={thisMonth} icon="✓" accent="purple" />
+      <section className="stat-grid dashboard-stat-grid" aria-label="Inspection statistics">
+        <StatCard label="In progress" value={loadingSurveys ? '—' : String(metrics.active)} note="Surveys awaiting completion" icon="◉" accent="blue" />
+        <StatCard label="Completed this month" value={loadingSurveys ? '—' : String(metrics.completed)} note="Based on your accessible workspaces" icon="✓" accent="green" />
+        <StatCard label="Total surveys" value={loadingSurveys ? '—' : String(metrics.total)} note="Visible to your account" icon="▤" accent="purple" />
       </section>
 
-      <section className="content-grid">
-        <article className="panel inspections-panel">
-          <div className="panel-heading"><div><h2>Recent inspections</h2><p>Track activity across your organization</p></div><NavLink to="/inspections" className="text-link">View all <span>→</span></NavLink></div>
-          <div className="table-wrap"><table><thead><tr><th>INSPECTION</th><th>LOCATION</th><th>SURVEY TYPE</th><th>STATUS</th><th>UPDATED</th><th /></tr></thead><tbody><tr><td colSpan={6}><div className="empty-table"><span className="empty-icon">▤</span><strong>No inspections yet</strong><span>New inspections will appear here once they’re created.</span><NavLink to="/inspections" className="text-link">Create your first inspection <span>→</span></NavLink></div></td></tr></tbody></table></div>
+      <section className="dashboard-content-grid">
+        <article className="panel dashboard-inspections-panel">
+          <div className="panel-heading"><div><span className="section-kicker">WORK QUEUE</span><h2>Recent inspections</h2><p>Latest surveys in the workspaces you can access</p></div>{canViewSurveys && <NavLink to="/inspections" className="text-link">Open inspections <span>→</span></NavLink>}</div>
+          {surveyError ? <div className="dashboard-inline-state dashboard-inline-error" role="alert"><strong>Activity unavailable</strong><span>{surveyError}</span></div> : loadingSurveys ? <div className="dashboard-inline-state" role="status"><span className="loading-dot" />Loading inspection activity…</div> : recentSurveys.length === 0 ? <div className="dashboard-empty-state"><span className="dashboard-empty-icon">▤</span><strong>{canViewSurveys ? 'No inspections yet' : 'Inspection access is not enabled'}</strong><span>{canViewSurveys ? 'When a survey is started, its progress will appear here.' : 'Your administrator can grant access to inspection workspaces.'}</span>{canViewSurveys && <NavLink to="/inspections" className="text-link">Start your first inspection <span>→</span></NavLink>}</div> : <div className="dashboard-table-wrap"><table><thead><tr><th>LOCATION</th><th>CHECKLIST</th><th>TYPE</th><th>STATUS</th><th>STARTED</th></tr></thead><tbody>{recentSurveys.map((survey) => <tr key={survey.public_id}><td><strong>{survey.site_name}</strong></td><td>{survey.checklist.name} <small>v{survey.checklist.version_number}</small></td><td>{survey.checklist.survey_type === 'offshore-helideck' ? 'Offshore helideck' : 'Onshore heliport'}</td><td><span className={`dashboard-status ${survey.status}`}>{survey.status === 'in_progress' ? 'In progress' : 'Completed'}</span></td><td>{new Date(survey.started_at).toLocaleDateString()}</td></tr>)}</tbody></table></div>}
         </article>
-        <article className="panel activity-panel">
-          <div className="panel-heading"><div><h2>Quick access</h2><p>Pick up where you left off</p></div></div>
-          <div className="quick-links">
-            <NavLink to="/assignments" className="quick-link"><span className="quick-icon blue-icon">✓</span><span><strong>My assignments</strong><small>Open your fieldwork queue</small></span><b>→</b></NavLink>
-            <NavLink to="/checklists" className="quick-link"><span className="quick-icon violet-icon">☷</span><span><strong>Checklist library</strong><small>Manage survey definitions</small></span><b>→</b></NavLink>
-            <NavLink to="/locations" className="quick-link"><span className="quick-icon green-icon">⌖</span><span><strong>Locations</strong><small>Manage survey locations</small></span><b>→</b></NavLink>
+        <article className="panel dashboard-actions-panel">
+          <div className="panel-heading"><div><span className="section-kicker">WORKSPACE TOOLS</span><h2>Quick actions</h2><p>Go straight to a task</p></div></div>
+          <div className="dashboard-action-list">
+            {canViewSurveys && <NavLink to="/inspections" className="dashboard-action"><span className="action-icon action-blue">＋</span><span><strong>Start an inspection</strong><small>Choose a published checklist and site</small></span><b>→</b></NavLink>}
+            {user?.memberships.some((membership) => membership.permissions.includes('inspections.assigned.view')) && <NavLink to="/assignments" className="dashboard-action"><span className="action-icon action-green">✓</span><span><strong>My assignments</strong><small>Continue your assigned fieldwork</small></span><b>→</b></NavLink>}
+            {canManageChecklists && <NavLink to="/checklists" className="dashboard-action"><span className="action-icon action-violet">☷</span><span><strong>Checklist library</strong><small>Edit drafts and review versions</small></span><b>→</b></NavLink>}
+            {user?.memberships.some((membership) => membership.permissions.includes('organizations.view')) && <NavLink to="/locations" className="dashboard-action"><span className="action-icon action-amber">⌖</span><span><strong>Locations</strong><small>Manage survey site information</small></span><b>→</b></NavLink>}
+            {!canViewSurveys && !canManageChecklists && <div className="dashboard-access-note"><strong>Workspace access</strong><span>Available actions depend on your organization role. Contact your administrator if you need additional access.</span></div>}
           </div>
-          <div className="setup-note"><div className="note-icon">✦</div><div><strong>Start with your survey setup</strong><p>Create a checklist and location to prepare your first inspection.</p><NavLink to="/checklists">Set up checklists <span>→</span></NavLink></div></div>
         </article>
       </section>
-      <footer className="page-footer"><span>ARTSCI Survey Platform</span><span>Sample workspace · No approved aviation checklist data loaded</span></footer>
-    </>
+      <footer className="page-footer dashboard-footer"><span>ARTSCI Survey Platform</span><span>Showing records available to your account</span></footer>
+    </section>
   )
 }
 
