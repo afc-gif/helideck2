@@ -4,6 +4,8 @@ FROM php:8.3-apache
 
 RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev libonig-dev unzip \
     && docker-php-ext-install -j"$(nproc)" pdo_pgsql opcache \
+    && a2dismod mpm_event mpm_worker \
+    && a2enmod mpm_prefork \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
