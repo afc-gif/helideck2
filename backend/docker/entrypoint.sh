@@ -37,4 +37,8 @@ sed -i "s/Listen 80/Listen ${port}/" /etc/apache2/ports.conf
 sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${port}>/" /etc/apache2/sites-available/000-default.conf
 
 su -s /bin/sh www-data -c 'cd /var/www/html && php artisan config:cache'
+echo "Running database migrations..."
+su -s /bin/sh www-data -c 'cd /var/www/html && php artisan migrate --force'
+echo "Seeding baseline roles and permissions..."
+su -s /bin/sh www-data -c 'cd /var/www/html && php artisan db:seed --force'
 exec apache2-foreground
