@@ -16,7 +16,7 @@ class OrganizationController extends Controller
         Gate::authorize('viewAny', Organization::class);
 
         return OrganizationResource::collection(
-            Organization::query()->visibleTo($request->user())->orderBy('name')->get(),
+            Organization::query()->visibleTo($request->user())->where('status', 'active')->orderBy('name')->get(),
         );
     }
 
@@ -25,6 +25,7 @@ class OrganizationController extends Controller
         $organization = Organization::query()
             ->visibleTo($request->user())
             ->where('public_id', $publicId)
+            ->where('status', 'active')
             ->firstOrFail();
 
         Gate::authorize('view', $organization);

@@ -43,6 +43,9 @@ export type ChecklistDefinition = {
   versions: ChecklistVersion[]
 }
 export type OrganizationSummary = { public_id: string; name: string; slug: string }
+export type RegistrationOrganization = { public_id: string; name: string }
+export type OrganizationMember = { id: number; name: string; email: string; role: string; status: 'pending' | 'active' }
+export type OrganizationRequest = { public_id: string; name: string; requested_at: string | null; contact: { name: string; email: string } | null }
 export type ChecklistLibrary = {
   survey_types: { slug: string; name: string }[]
   checklists: ChecklistDefinition[]
@@ -151,11 +154,35 @@ export const api = {
       body: JSON.stringify({ email, password }),
     })).data
   },
+  async registrationOrganizations(): Promise<RegistrationOrganization[]> {
+    return (await request<ApiEnvelope<RegistrationOrganization[]>>('/api/registration/organizations')).data
+  },
+  async register(payload: { account_type: 'organization' | 'field_staff'; organization_public_id?: string; organization_name?: string; name: string; email: string; password: string; password_confirmation: string }): Promise<{ message: string }> {
+    return request<{ message: string }>('/api/register', { method: 'POST', body: JSON.stringify(payload) })
+  },
   async logout(): Promise<void> {
     await request('/api/logout', { method: 'POST' })
   },
   async organizations(): Promise<OrganizationSummary[]> {
     return (await request<ApiEnvelope<OrganizationSummary[]>>('/api/organizations')).data
+  },
+  async organizationRequests(): Promise<OrganizationRequest[]> {
+    return (await request<ApiEnvelope<OrganizationRequest[]>>('/api/platform/organization-requests')).data
+  },
+  async approveOrganizationRequest(publicId: string): Promise<{ public_id: string; name: string; status: string }> {
+    return (await request<ApiEnvelope<{ public_id: string; name: string; status: string }>>(`/api/platform/organization-requests/${encodeURIComponent(publicId)}/approve`, {
+      method: 'POST',
+      body: JSON.stringify({}),
+    })).data
+  },
+  async organizationMembers(organizationPublicId: string): Promise<OrganizationMember[]> {
+    return (await request<ApiEnvelope<OrganizationMember[]>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/members`)).data
+  },
+  async approveOrganizationMember(organizationPublicId: string, userId: number, role: string): Promise<OrganizationMember> {
+    return (await request<ApiEnvelope<OrganizationMember>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/members/${userId}/approve`, {
+      method: 'POST',
+      body: JSON.stringify({ role }),
+    })).data
   },
   async checklists(organizationPublicId: string): Promise<ChecklistLibrary> {
     return (await request<ApiEnvelope<ChecklistLibrary>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/checklists`)).data

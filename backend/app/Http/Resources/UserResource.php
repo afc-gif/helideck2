@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'is_super_admin' => $this->isSuperAdmin(),
             'platform_roles' => $this->whenLoaded('platformRoles', fn (): array => $this->platformRoles->pluck('slug')->values()->all()),
-            'memberships' => $this->whenLoaded('memberships', fn (): array => $this->memberships->map(fn ($membership): array => [
+            'memberships' => $this->whenLoaded('memberships', fn (): array => $this->memberships->where('status', 'active')->map(fn ($membership): array => [
                 'organization' => [
                     'public_id' => $membership->organization->public_id,
                     'name' => $membership->organization->name,

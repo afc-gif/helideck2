@@ -3,7 +3,10 @@ import { BrowserRouter, Link, NavLink, Outlet, Route, Routes, useLocation } from
 import { useAuth } from './auth/AuthContext'
 import { api, apiUrl, type SurveySummary } from './lib/api'
 import { LoginPage } from './auth/LoginPage'
+import { RegistrationPage, RegistrationSubmittedPage } from './auth/RegistrationPage'
 import { ProtectedRoute } from './auth/ProtectedRoute'
+import { MemberManagementPage } from './members/MemberManagementPage'
+import { OrganizationRequestsPage } from './organizations/OrganizationRequestsPage'
 import { ChecklistAdministrationPage } from './checklists/ChecklistAdministrationPage'
 import { SurveyTakingPage } from './surveys/SurveyTakingPage'
 import './App.css'
@@ -15,6 +18,8 @@ const navigation: { label: string; path: string; icon: string; permission?: stri
   { label: 'Checklists', path: '/checklists', icon: '☷', permission: ['checklists.manage'] },
   { label: 'Locations', path: '/locations', icon: '⌖', permission: ['organizations.view'] },
   { label: 'Reviews', path: '/reviews', icon: '◷', permission: ['reviews.manage'] },
+  { label: 'Team', path: '/team', icon: '♙', permission: ['organization.members.manage'] },
+  { label: 'Organization requests', path: '/organization-requests', icon: '▣', permission: ['platform.roles.view'] },
 ]
 
 function App() {
@@ -22,11 +27,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/registration-submitted" element={<RegistrationSubmittedPage />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<Shell />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/checklists" element={<ChecklistAdministrationPage />} />
-            {navigation.slice(1).filter((item) => item.path !== '/checklists').map((item) => (
+            <Route path="/team" element={<MemberManagementPage />} />
+            <Route path="/organization-requests" element={<OrganizationRequestsPage />} />
+            {navigation.slice(1).filter((item) => item.path !== '/checklists' && item.path !== '/team' && item.path !== '/organization-requests').map((item) => (
               <Route key={item.path} path={item.path} element={item.path === '/inspections' ? <SurveyTakingPage /> : <EmptySection title={item.label} />} />
             ))}
             <Route path="*" element={<EmptySection title="Page not found" />} />
@@ -107,6 +116,7 @@ function Dashboard() {
   const greeting = currentDate.getHours() < 12 ? 'Good morning' : currentDate.getHours() < 18 ? 'Good afternoon' : 'Good evening'
   const canViewSurveys = Boolean(user?.is_super_admin || user?.memberships.some((membership) => membership.permissions.some((permission) => ['inspections.manage', 'inspections.assigned.view'].includes(permission))))
   const canManageChecklists = Boolean(user?.is_super_admin || user?.memberships.some((membership) => membership.permissions.includes('checklists.manage')))
+  const canManageMembers = Boolean(user?.is_super_admin || user?.memberships.some((membership) => membership.permissions.includes('organization.members.manage')))
   const metrics = useMemo(() => {
     return {
       active: surveys.filter((survey) => survey.status === 'in_progress').length,
@@ -148,8 +158,8 @@ function Dashboard() {
   return (
     <section className="dashboard-page">
       <div className="dashboard-hero">
-        <div className="dashboard-hero-copy"><div className="eyebrow">OPERATIONS OVERVIEW <span className="hero-eyebrow-divider">·</span> {today.toUpperCase()}</div><h1>{greeting}, {firstName}</h1><p>A clear view of inspections and tools available in your workspace.</p>
-          <div className="dashboard-hero-actions">{canViewSurveys && <NavLink className="primary-button" to="/inspections"><span>＋</span> Start an inspection</NavLink>}{canManageChecklists && <NavLink className="hero-secondary-link" to="/checklists">Manage checklists <span>↗</span></NavLink>}</div>
+        <div className="dashboard-hero-copy"><div className="eyebrow">OPERATIONS OVERVIEW <span className="hero-eyebrow-divider">·</span> {today.toUpperCase()}</div><h1>{greeting}, {firstName}</h1><p>{user?.is_super_admin ? 'Review organization applications and oversee survey operations across ARTSCI workspaces.' : 'A clear view of inspections and tools available in your workspace.'}</p>
+          <div className="dashboard-hero-actions">{canViewSurveys && <NavLink className="primary-button" to="/inspections"><span>＋</span> Start an inspection</NavLink>}{canManageChecklists && <NavLink className="hero-secondary-link" to="/checklists">Manage checklists <span>↗</span></NavLink>}{user?.is_super_admin && <NavLink className="hero-secondary-link" to="/organization-requests">Review organization applications <span>↗</span></NavLink>}</div>
         </div>
         <div className="dashboard-hero-side"><span className="hero-side-label">SIGNED IN AS</span><strong>{user?.is_super_admin ? 'Platform administrator' : user?.memberships[0]?.role.replaceAll('_', ' ') ?? 'Member'}</strong><span>{user?.is_super_admin ? 'Platform-wide access' : `${user?.memberships.length ?? 0} organization ${(user?.memberships.length ?? 0) === 1 ? 'workspace' : 'workspaces'}`}</span></div>
       </div>
@@ -170,6 +180,8 @@ function Dashboard() {
             {canViewSurveys && <NavLink to="/inspections" className="dashboard-action"><span className="action-icon action-blue">＋</span><span><strong>Start an inspection</strong><small>Choose a published checklist and site</small></span><b>→</b></NavLink>}
             {user?.memberships.some((membership) => membership.permissions.includes('inspections.assigned.view')) && <NavLink to="/assignments" className="dashboard-action"><span className="action-icon action-green">✓</span><span><strong>My assignments</strong><small>Continue your assigned fieldwork</small></span><b>→</b></NavLink>}
             {canManageChecklists && <NavLink to="/checklists" className="dashboard-action"><span className="action-icon action-violet">☷</span><span><strong>Checklist library</strong><small>Edit drafts and review versions</small></span><b>→</b></NavLink>}
+            {canManageMembers && <NavLink to="/team" className="dashboard-action"><span className="action-icon action-blue">♙</span><span><strong>Review team access</strong><small>Approve signup requests and assign roles</small></span><b>→</b></NavLink>}
+            {user?.is_super_admin && <NavLink to="/organization-requests" className="dashboard-action"><span className="action-icon action-amber">▣</span><span><strong>Organization applications</strong><small>Approve new company workspaces</small></span><b>→</b></NavLink>}
             {user?.memberships.some((membership) => membership.permissions.includes('organizations.view')) && <NavLink to="/locations" className="dashboard-action"><span className="action-icon action-amber">⌖</span><span><strong>Locations</strong><small>Manage survey site information</small></span><b>→</b></NavLink>}
             {!canViewSurveys && !canManageChecklists && <div className="dashboard-access-note"><strong>Workspace access</strong><span>Available actions depend on your organization role. Contact your administrator if you need additional access.</span></div>}
           </div>

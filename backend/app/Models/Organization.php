@@ -39,6 +39,8 @@ class Organization extends Model
     /** @param Builder<Organization> $query */
     public function scopeVisibleTo(Builder $query, User $user): void
     {
+        $query->where('status', 'active');
+
         if ($user->isSuperAdmin()) {
             return;
         }

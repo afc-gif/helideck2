@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from './AuthContext'
 import { ApiError } from '../lib/api'
 
@@ -57,7 +57,7 @@ export function LoginPage() {
           {fieldErrors.password && <span className="field-error" id="password-error">{fieldErrors.password[0]}</span>}
           <button className="primary-button login-submit" type="submit" disabled={submitting}>{submitting ? 'Signing in…' : 'Sign in'} <span>→</span></button>
         </form>
-        <p className="login-help">Need access? Contact your ARTSCI organization administrator.</p>
+        <p className="login-help">New to ARTSCI? <Link to="/register">Create an account</Link><br />Your organization administrator must approve your request before sign-in.</p>
       </section>
       <footer className="login-footer">Secure access for ARTSCI survey operations</footer>
     </main>
