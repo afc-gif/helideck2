@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PlatformOrganizationController;
 use App\Http\Controllers\Api\PlatformRoleController;
 use App\Http\Controllers\Api\RegistrationController;
 use App\Http\Controllers\Api\SurveyInstanceController;
+use App\Http\Controllers\Api\SurveyEvidenceController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,10 @@ Route::middleware('auth:sanctum')->group(function (): void {
         ->name('api.organizations.surveys.show');
     Route::put('/organizations/{publicId}/surveys/{surveyPublicId}/answers', [SurveyInstanceController::class, 'saveAnswers'])
         ->name('api.organizations.surveys.answers.update');
+    Route::post('/organizations/{publicId}/surveys/{surveyPublicId}/evidence/sign', [SurveyEvidenceController::class, 'signUpload'])
+        ->name('api.organizations.surveys.evidence.sign');
+    Route::post('/organizations/{publicId}/surveys/{surveyPublicId}/evidence', [SurveyEvidenceController::class, 'confirmUpload'])
+        ->name('api.organizations.surveys.evidence.store');
     Route::get('/platform/roles', [PlatformRoleController::class, 'index'])->name('api.platform.roles.index');
     Route::get('/platform/organization-requests', [PlatformOrganizationController::class, 'index'])
         ->name('api.platform.organization-requests.index');

@@ -60,6 +60,19 @@ export type SurveyQuestion = ChecklistQuestion & { public_id: string }
 export type SurveySection = { public_id: string; title: string; description: string | null; source_provenance: SourceProvenance; questions: SurveyQuestion[]; table_blocks: (ChecklistTableBlock & { public_id: string; columns: (ChecklistTableColumn & { public_id: string })[] })[] }
 export type SurveyAnswer = { value: unknown; comment: string | null }
 export type SurveyTableRow = { public_id: string; cells: Record<string, SurveyAnswer> }
+export type SurveyEvidence = {
+  public_id: string
+  category_key: string
+  category_label: string
+  original_filename: string
+  mime_type: string
+  byte_size: number
+  width: number | null
+  height: number | null
+  caption: string | null
+  uploaded_at: string
+  url: string
+}
 export type SurveySummary = {
   public_id: string
   site_name: string
@@ -69,7 +82,7 @@ export type SurveySummary = {
   checklist: { public_id: string; name: string; survey_type: string; version_number: number }
   assignee: { id: number; name: string } | null
 }
-export type SurveyInstance = SurveySummary & { sections: SurveySection[]; answers: Record<string, SurveyAnswer>; table_rows: Record<string, SurveyTableRow[]> }
+export type SurveyInstance = SurveySummary & { sections: SurveySection[]; answers: Record<string, SurveyAnswer>; table_rows: Record<string, SurveyTableRow[]>; evidence_categories: Record<string, string>; evidence: SurveyEvidence[] }
 
 const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '')
 
@@ -236,6 +249,42 @@ export const api = {
     return (await request<ApiEnvelope<SurveyInstance>>(`/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(surveyPublicId)}/answers`, {
       method: 'PUT',
       body: JSON.stringify({ answers, status, table_rows }),
+    })).data
+  },
+  async uploadSurveyEvidence(organizationPublicId: string, survey: SurveySummary, categoryKey: string, file: File, caption: string | null): Promise<SurveyEvidence> {
+    const base = `/api/organizations/${encodeURIComponent(organizationPublicId)}/surveys/${encodeURIComponent(survey.public_id)}/evidence`
+    const signature = (await request<ApiEnvelope<{
+      upload_url: string; api_key: string; timestamp: number; signature: string
+      public_id: string; type: 'authenticated'; context: string; original_filename: string
+      mime_type: string; byte_size: number; category_key: string; caption: string | null
+    }>>(`${base}/sign`, {
+      method: 'POST',
+      body: JSON.stringify({ category_key: categoryKey, original_filename: file.name, mime_type: file.type, byte_size: file.size, caption }),
+    })).data
+
+    const body = new FormData()
+    body.set('file', file)
+    body.set('api_key', signature.api_key)
+    body.set('timestamp', String(signature.timestamp))
+    body.set('signature', signature.signature)
+    body.set('public_id', signature.public_id)
+    body.set('type', signature.type)
+    body.set('context', signature.context)
+    const cloudinaryResponse = await fetch(signature.upload_url, { method: 'POST', body })
+    const cloudinaryPayload = await cloudinaryResponse.json().catch(() => ({})) as { public_id?: string; error?: { message?: string } }
+    if (!cloudinaryResponse.ok || !cloudinaryPayload.public_id) {
+      throw new ApiError(cloudinaryPayload.error?.message ?? 'Cloudinary could not store this image.', cloudinaryResponse.status || 502)
+    }
+
+    return (await request<ApiEnvelope<SurveyEvidence>>(base, {
+      method: 'POST',
+      body: JSON.stringify({
+        category_key: signature.category_key,
+        public_id: cloudinaryPayload.public_id,
+        original_filename: signature.original_filename,
+        mime_type: signature.mime_type,
+        caption: signature.caption,
+      }),
     })).data
   },
 }

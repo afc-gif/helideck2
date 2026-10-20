@@ -27,6 +27,8 @@ export function SurveyTakingPage() {
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const [pageIndex, setPageIndex] = useState(0)
+  const [uploadingCategory, setUploadingCategory] = useState<string | null>(null)
+  const [evidenceCaptions, setEvidenceCaptions] = useState<Record<string, string>>({})
 
   useEffect(() => {
     let current = true
@@ -58,8 +60,10 @@ export function SurveyTakingPage() {
     ? versionNumber
     : selectedVersions.at(-1)?.version_number ?? null
   const activeAnswers = useMemo(() => activeSurvey?.answers ?? {}, [activeSurvey])
-  const activePageIndex = Math.min(pageIndex, Math.max(0, (activeSurvey?.sections.length ?? 1) - 1))
+  const pageCount = (activeSurvey?.sections.length ?? 0) + 1
+  const activePageIndex = Math.min(pageIndex, Math.max(0, pageCount - 1))
   const activeSection = activeSurvey?.sections[activePageIndex] ?? null
+  const isEvidencePage = Boolean(activeSurvey && activePageIndex === activeSurvey.sections.length)
 
   async function refreshSurveys() {
     if (!organizationId) return
@@ -156,6 +160,29 @@ export function SurveyTakingPage() {
     setActiveSurvey((current) => current ? { ...current, table_rows: { ...current.table_rows, [blockId]: (current.table_rows[blockId] ?? []).filter((_, index) => index !== rowIndex) } } : current)
   }
 
+  async function uploadEvidence(categoryKey: string, file: File, input: HTMLInputElement) {
+    if (!organizationId || !activeSurvey) return
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 15 * 1024 * 1024) {
+      setError('Choose a JPEG, PNG, or WebP image up to 15 MB.')
+      input.value = ''
+      return
+    }
+    setUploadingCategory(categoryKey)
+    setError(null)
+    setNotice(null)
+    try {
+      const evidence = await api.uploadSurveyEvidence(organizationId, activeSurvey, categoryKey, file, evidenceCaptions[categoryKey]?.trim() || null)
+      setActiveSurvey((current) => current ? { ...current, evidence: [...current.evidence, evidence] } : current)
+      setNotice('Photo uploaded securely to Cloudinary.')
+      setEvidenceCaptions((current) => ({ ...current, [categoryKey]: '' }))
+    } catch (cause) {
+      setError(errorMessage(cause))
+    } finally {
+      setUploadingCategory(null)
+      input.value = ''
+    }
+  }
+
   if (loading) return <section className="survey-page"><div className="survey-panel">Loading survey workspace…</div></section>
 
   return <section className="survey-page">
@@ -187,8 +214,8 @@ export function SurveyTakingPage() {
       <main className="survey-panel survey-editor-panel">
         {!activeSurvey ? <div className="survey-editor-empty"><span className="empty-icon">▤</span><strong>Choose a survey to resume</strong><span>Starting a survey pins the selected published checklist version.</span></div> : <>
           <div className="survey-editor-header"><div><div className="eyebrow">{activeSurvey.checklist.survey_type === 'offshore-helideck' ? 'OFFSHORE HELIDECK' : 'ONSHORE HELIPORT'} · VERSION {activeSurvey.checklist.version_number}</div><h2>{activeSurvey.site_name}</h2><p>{activeSurvey.checklist.name} · Started {new Date(activeSurvey.started_at).toLocaleDateString()}</p></div><span className={`survey-status ${activeSurvey.status}`}>{activeSurvey.status.replace('_', ' ')}</span></div>
-          <div className="survey-page-navigation"><label>Questionnaire page<select value={activePageIndex} onChange={(event) => setPageIndex(Number(event.target.value))}>{activeSurvey.sections.map((section, index) => <option key={section.public_id} value={index}>Page {index + 1}: {section.title}</option>)}</select></label><span>Page {activePageIndex + 1} of {activeSurvey.sections.length}</span></div>
-          <div className="survey-page-progress" role="progressbar" aria-label="Questionnaire pages" aria-valuemin={0} aria-valuemax={activeSurvey.sections.length} aria-valuenow={activePageIndex + 1}><span style={{ width: `${activeSurvey.sections.length ? ((activePageIndex + 1) / activeSurvey.sections.length) * 100 : 0}%` }} /></div>
+          <div className="survey-page-navigation"><label>Questionnaire page<select value={activePageIndex} onChange={(event) => setPageIndex(Number(event.target.value))}>{activeSurvey.sections.map((section, index) => <option key={section.public_id} value={index}>Page {index + 1}: {section.title}</option>)}<option value={activeSurvey.sections.length}>Page {pageCount}: Evidence and photos</option></select></label><span>Page {activePageIndex + 1} of {pageCount}</span></div>
+          <div className="survey-page-progress" role="progressbar" aria-label="Questionnaire pages" aria-valuemin={0} aria-valuemax={pageCount} aria-valuenow={activePageIndex + 1}><span style={{ width: `${pageCount ? ((activePageIndex + 1) / pageCount) * 100 : 0}%` }} /></div>
           {activeSection && <section className="survey-question-section" key={activeSection.public_id}><div className="survey-section-heading"><h3>{activeSection.title}</h3>{activeSection.description && <p>{activeSection.description}</p>}</div>
             {activeSection.questions.map((question) => {
               const answer = activeAnswers[question.public_id] ?? { value: emptyValue(question.field_type), comment: null }
@@ -227,7 +254,11 @@ export function SurveyTakingPage() {
               </div>
             })}
           </section>}
-          <div className="survey-actions"><div className="survey-page-actions"><button type="button" className="secondary-button" disabled={activePageIndex === 0} onClick={() => setPageIndex((current) => Math.max(0, current - 1))}>Previous page</button><button type="button" className="secondary-button" disabled={activePageIndex >= activeSurvey.sections.length - 1} onClick={() => setPageIndex((current) => Math.min(activeSurvey.sections.length - 1, current + 1))}>Next page</button></div><span>Answers are saved to this survey’s pinned version.</span><div><button type="button" className="secondary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('in_progress')}>Save progress</button><button type="button" className="primary-button" disabled={saving || activeSurvey.status === 'completed'} onClick={() => void saveSurvey('completed')}>{saving ? 'Saving…' : 'Complete survey'}</button></div></div>
+          {isEvidencePage && <section className="survey-evidence-page"><div className="survey-section-heading"><h3>Evidence and photos</h3><p>Photo categories reproduce the evidence panels in the approved report. The reports do not state that every category must contain a photo.</p></div><div className="survey-evidence-grid">{Object.entries(activeSurvey.evidence_categories).map(([categoryKey, categoryLabel]) => {
+            const items = activeSurvey.evidence.filter((item) => item.category_key === categoryKey)
+            return <article className="survey-evidence-card" key={categoryKey}><div className="survey-evidence-card-heading"><h4>{categoryLabel}</h4><span>{items.length} {items.length === 1 ? 'photo' : 'photos'}</span></div>{items.length > 0 && <div className="survey-evidence-gallery">{items.map((item) => <figure key={item.public_id}><a href={item.url} target="_blank" rel="noreferrer"><img src={item.url} alt={item.caption || item.category_label} loading="lazy" /></a><figcaption>{item.caption || item.original_filename}</figcaption></figure>)}</div>}{activeSurvey.status !== 'completed' && <div className="survey-evidence-upload">{items.length > 0 && <span className="survey-evidence-or">Add another photo</span>}<label>Caption <span>(optional)</span><input value={evidenceCaptions[categoryKey] ?? ''} maxLength={2000} onChange={(event) => setEvidenceCaptions((current) => ({ ...current, [categoryKey]: event.target.value }))} placeholder="Describe this photo" /></label><label className="survey-evidence-file">{uploadingCategory === categoryKey ? 'Uploading securely…' : 'Choose photo'}<input type="file" accept="image/jpeg,image/png,image/webp" disabled={uploadingCategory !== null} onChange={(event) => { const file = event.target.files?.[0]; if (file) void uploadEvidence(categoryKey, file, event.currentTarget) }} /></label><small>JPEG, PNG, or WebP · up to 15 MB · private Cloudinary storage</small></div>}</article>
+          })}</div></section>}
+          <div className="survey-actions"><div className="survey-page-actions"><button type="button" className="secondary-button" disabled={activePageIndex === 0} onClick={() => setPageIndex((current) => Math.max(0, current - 1))}>Previous page</button><button type="button" className="secondary-button" disabled={activePageIndex >= pageCount - 1} onClick={() => setPageIndex((current) => Math.min(pageCount - 1, current + 1))}>Next page</button></div><span>Answers are saved to this survey’s pinned version.</span><div><button type="button" className="secondary-button" disabled={saving || activeSurvey.status === 'completed' || uploadingCategory !== null} onClick={() => void saveSurvey('in_progress')}>Save progress</button><button type="button" className="primary-button" disabled={saving || activeSurvey.status === 'completed' || uploadingCategory !== null} onClick={() => void saveSurvey('completed')}>{saving ? 'Saving…' : 'Complete survey'}</button></div></div>
         </>}
       </main>
     </div>

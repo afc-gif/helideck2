@@ -63,6 +63,12 @@ Set these on the backend service, not in Git:
 | Variable | Value |
 | --- | --- |
 | `APP_NAME` | `Helideck Report` |
+| `CLOUDINARY_CLOUD_NAME` | Cloud name from the Cloudinary console (`dmkwhnekc`) |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Rotated Cloudinary API secret, stored only as a Railway backend secret |
+| `CLOUDINARY_FOLDER` | `helideck` |
+
+Survey evidence uses signed, direct-to-Cloudinary image uploads with the `authenticated` delivery type. The API verifies each uploaded asset before saving its survey link and source-table provenance. The secret is only used by the backend; no Cloudinary secret belongs in a `VITE_` variable.
 | `APP_ENV` | `production` |
 | `APP_DEBUG` | `false` |
 | `APP_KEY` | Generate with `php artisan key:generate --show` in a secure local environment and paste the result into Railway's secret variable editor. Never commit it. |

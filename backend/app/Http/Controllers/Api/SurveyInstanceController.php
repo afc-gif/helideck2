@@ -16,6 +16,8 @@ use App\Models\SurveyInstance;
 use App\Models\SurveyTableCell;
 use App\Models\SurveyTableRow;
 use App\Models\User;
+use App\Services\CloudinaryEvidenceStorage;
+use App\Support\SurveyEvidenceCategories;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +62,7 @@ class SurveyInstanceController extends Controller
         return response()->json(['data' => $surveys]);
     }
 
-    public function store(StoreSurveyInstanceRequest $request, string $publicId): JsonResponse
+    public function store(StoreSurveyInstanceRequest $request, string $publicId, CloudinaryEvidenceStorage $cloudinary): JsonResponse
     {
         $organization = $this->organizationForSurveys($publicId);
         $user = $request->user();
@@ -95,21 +97,21 @@ class SurveyInstanceController extends Controller
             'status' => 'in_progress',
         ]);
 
-        return response()->json(['data' => $this->surveyData($this->surveyQuery($organization)->findOrFail($survey->getKey()))], 201);
+        return response()->json(['data' => $this->surveyData($this->surveyQuery($organization)->findOrFail($survey->getKey()), $cloudinary)], 201);
     }
 
-    public function show(string $publicId, string $surveyPublicId): JsonResponse
+    public function show(string $publicId, string $surveyPublicId, CloudinaryEvidenceStorage $cloudinary): JsonResponse
     {
         $organization = $this->organizationForSurveys($publicId);
         $survey = $this->visibleSurveys($organization)
             ->where('public_id', $surveyPublicId)
-            ->with(['checklistDefinition.surveyType', 'checklistVersion.sections.questions.options', 'checklistVersion.sections.tableBlocks.columns', 'answers.question', 'tableRows.tableBlock', 'tableRows.cells.column', 'assignee:id,name'])
+            ->with(['checklistDefinition.surveyType', 'checklistVersion.sections.questions.options', 'checklistVersion.sections.tableBlocks.columns', 'answers.question', 'tableRows.tableBlock', 'tableRows.cells.column', 'assignee:id,name', 'evidence'])
             ->firstOrFail();
 
-        return response()->json(['data' => $this->surveyData($survey)]);
+        return response()->json(['data' => $this->surveyData($survey, $cloudinary)]);
     }
 
-    public function saveAnswers(SaveSurveyAnswersRequest $request, string $publicId, string $surveyPublicId): JsonResponse
+    public function saveAnswers(SaveSurveyAnswersRequest $request, string $publicId, string $surveyPublicId, CloudinaryEvidenceStorage $cloudinary): JsonResponse
     {
         $organization = $this->organizationForSurveys($publicId);
         $survey = $this->visibleSurveys($organization)
@@ -179,7 +181,7 @@ class SurveyInstanceController extends Controller
             ]);
         });
 
-        return response()->json(['data' => $this->surveyData($this->surveyQuery($organization)->findOrFail($survey->getKey()))]);
+        return response()->json(['data' => $this->surveyData($this->surveyQuery($organization)->findOrFail($survey->getKey()), $cloudinary)]);
     }
 
     private function organizationForSurveys(string $publicId): Organization
@@ -231,6 +233,7 @@ class SurveyInstanceController extends Controller
             'tableRows.tableBlock',
             'tableRows.cells.column',
             'assignee:id,name',
+            'evidence',
         ])->getQuery();
     }
 
@@ -254,7 +257,7 @@ class SurveyInstanceController extends Controller
     }
 
     /** @return array<string, mixed> */
-    private function surveyData(SurveyInstance $survey): array
+    private function surveyData(SurveyInstance $survey, CloudinaryEvidenceStorage $cloudinary): array
     {
         $data = $this->surveySummary($survey);
         $data['sections'] = $survey->checklistVersion->sections->map(fn ($section): array => [
@@ -300,6 +303,22 @@ class SurveyInstanceController extends Controller
                     $cell->column->public_id => ['value' => $cell->value, 'comment' => $cell->comment],
                 ]),
             ]));
+        $data['evidence_categories'] = SurveyEvidenceCategories::ALL[$survey->survey_type_slug_snapshot] ?? [];
+        $data['evidence'] = $survey->evidence->map(fn ($evidence): array => [
+            'public_id' => $evidence->public_id,
+            'category_key' => $evidence->category_key,
+            'category_label' => $evidence->category_label,
+            'source_document_identifier' => $evidence->source_document_identifier,
+            'source_table_number' => $evidence->source_table_number,
+            'original_filename' => $evidence->original_filename,
+            'mime_type' => $evidence->mime_type,
+            'byte_size' => $evidence->byte_size,
+            'width' => $evidence->width,
+            'height' => $evidence->height,
+            'caption' => $evidence->caption,
+            'uploaded_at' => $evidence->uploaded_at?->toISOString(),
+            'url' => $cloudinary->signedDeliveryUrl($evidence->public_id, $evidence->format, (int) $evidence->cloudinary_version),
+        ])->values();
 
         return $data;
     }

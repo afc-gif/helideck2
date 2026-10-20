@@ -64,4 +64,10 @@ class SurveyInstance extends Model
     {
         return $this->hasMany(SurveyTableRow::class)->orderBy('checklist_table_block_id')->orderBy('position');
     }
+
+    /** @return HasMany<SurveyEvidence, $this> */
+    public function evidence(): HasMany
+    {
+        return $this->hasMany(SurveyEvidence::class)->orderBy('category_key')->orderBy('id');
+    }
 }
