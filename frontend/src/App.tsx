@@ -10,6 +10,20 @@ import { OrganizationRequestsPage } from './organizations/OrganizationRequestsPa
 import { ChecklistAdministrationPage } from './checklists/ChecklistAdministrationPage'
 import { SurveyTakingPage } from './surveys/SurveyTakingPage'
 import './App.css'
+import './theme.css'
+
+type ThemeMode = 'light' | 'dark'
+
+function preferredTheme(): ThemeMode {
+  try {
+    const savedTheme = window.localStorage.getItem('artsci-theme')
+    if (savedTheme === 'dark' || savedTheme === 'light') return savedTheme
+  } catch {
+    // Use the system preference when browser storage is unavailable.
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
 
 const navigation: { label: string; path: string; icon: string; permission?: string[] }[] = [
   { label: 'Dashboard', path: '/', icon: '▦' },
@@ -50,19 +64,28 @@ function Shell() {
   const { user, logout } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
   const [logoutError, setLogoutError] = useState<string | null>(null)
+  const [theme, setTheme] = useState<ThemeMode>(preferredTheme)
   const location = useLocation()
   const visibleNavigation = navigation.filter((item) => !item.permission || user?.is_super_admin || user?.memberships.some((membership) => item.permission?.some((permission) => membership.permissions.includes(permission))))
   const initials = user?.name.split(/\s+/).slice(0, 2).map((name) => name[0]).join('').toUpperCase() ?? 'A'
   const currentRole = user?.is_super_admin ? 'Super Administrator' : user?.memberships[0]?.role.replaceAll('_', ' ') ?? 'Member'
 
+  useEffect(() => {
+    try {
+      window.localStorage.setItem('artsci-theme', theme)
+    } catch {
+      // The selected theme still applies for this session.
+    }
+  }, [theme])
+
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={theme}>
       <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`}>
         <Link className="brand" to="/" aria-label="ARTSCI Survey home">
           <span className="brand-mark">A</span>
-          <span className="brand-name">ARTSCI<span>FIELD OPERATIONS</span></span>
+          <span className="brand-name">ARTSCI<span>SURVEY OPERATIONS</span></span>
         </Link>
-        <div className="workspace-label">WORKSPACE</div>
+        <div className="workspace-label">{user?.is_super_admin ? 'PLATFORM' : user?.memberships[0]?.organization.name.toUpperCase() ?? 'WORKSPACE'}</div>
         <nav className="nav-list" aria-label="Main navigation">
           {visibleNavigation.map((item) => (
             <NavLink key={item.path} to={item.path} end={item.path === '/'} onClick={() => setMenuOpen(false)} className={({ isActive }) => `nav-item ${isActive ? 'nav-active' : ''}`}>
@@ -83,7 +106,7 @@ function Shell() {
         <header className="topbar">
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">☰</button>
           <div className="breadcrumbs"><span>ARTSCI</span><b>/</b><strong>{navigation.find((item) => item.path === location.pathname)?.label ?? 'Workspace'}</strong></div>
-          <div className="topbar-right"><ApiStatus /><span className="topbar-divider" /><span className="avatar" aria-hidden="true">{initials}</span><div className="user-meta"><strong>{user?.name}</strong><span>{currentRole}</span></div><button className="sign-out-button" type="button" onClick={() => { setLogoutError(null); void logout().catch(() => setLogoutError('Sign out failed. Check your connection and retry.')) }}>Sign out</button></div>
+          <div className="topbar-right"><ApiStatus /><button className="theme-toggle" type="button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark mode' : 'Light mode'}</span></button><span className="topbar-divider" /><span className="avatar" aria-hidden="true">{initials}</span><div className="user-meta"><strong>{user?.name}</strong><span>{currentRole}</span></div><button className="sign-out-button" type="button" onClick={() => { setLogoutError(null); void logout().catch(() => setLogoutError('Sign out failed. Check your connection and retry.')) }}>Sign out</button></div>
         </header>
         {logoutError && <div className="logout-error" role="alert">{logoutError}</div>}
         <main className="page-content"><Outlet /></main>
