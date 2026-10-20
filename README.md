@@ -1,6 +1,6 @@
-# ARTSCI Survey Platform
+# Helideck Report
 
-Monorepo for ARTSCI's helideck and heliport survey platform. It contains a React 19, TypeScript, and Vite frontend in `frontend/`, and a Laravel 13 API in `backend/`. PostgreSQL is the production database. The project does not include official aviation requirements or sample survey questions.
+Monorepo for Helideck Report, a helideck and heliport survey platform overseen by ARTSCI platform administrators. It contains a React 19, TypeScript, and Vite frontend in `frontend/`, and a Laravel 13 API in `backend/`. PostgreSQL is the production database. The project does not include official aviation requirements or sample survey questions.
 
 ## Local development
 
@@ -62,6 +62,7 @@ Set these on the backend service, not in Git:
 
 | Variable | Value |
 | --- | --- |
+| `APP_NAME` | `Helideck Report` |
 | `APP_ENV` | `production` |
 | `APP_DEBUG` | `false` |
 | `APP_KEY` | Generate with `php artisan key:generate --show` in a secure local environment and paste the result into Railway's secret variable editor. Never commit it. |

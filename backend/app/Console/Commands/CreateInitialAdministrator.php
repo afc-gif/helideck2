@@ -71,7 +71,7 @@ class CreateInitialAdministrator extends Command
             return self::FAILURE;
         }
 
-        $this->info('Platform administrator created. Sign in through the ARTSCI frontend.');
+        $this->info('Platform administrator created. Sign in to Helideck Report.');
 
         return self::SUCCESS;
     }

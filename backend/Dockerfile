@@ -26,6 +26,6 @@ RUN chmod +x /usr/local/bin/artsci-entrypoint \
     && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-ENV APP_NAME="ARTSCI Survey Platform" APP_ENV=production APP_DEBUG=false
+ENV APP_NAME="Helideck Report" APP_ENV=production APP_DEBUG=false
 EXPOSE 8080
 ENTRYPOINT ["/usr/local/bin/artsci-entrypoint"]

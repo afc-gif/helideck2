@@ -63,8 +63,8 @@ export function RegistrationPage() {
   return (
     <main className="login-page">
       <section className="login-card registration-card" aria-labelledby="registration-title">
-        <div className="login-brand"><span className="brand-mark">A</span><span className="brand-name">ARTSCI<span>FIELD OPERATIONS</span></span></div>
-        <div className="login-intro"><div className="eyebrow">ARTSCI SURVEY PLATFORM</div><h1 id="registration-title">Create an account</h1><p>Choose whether you’re registering an organization or requesting access as field staff.</p></div>
+        <div className="login-brand"><span className="brand-mark">H</span><span className="brand-name">Helideck Report<span>SURVEY OPERATIONS</span></span></div>
+        <div className="login-intro"><div className="eyebrow">HELIDECK REPORT</div><h1 id="registration-title">Create an account</h1><p>Choose whether you’re registering an organization or requesting access as field staff.</p></div>
         {error && <div className="login-error" role="alert">{error}</div>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="account-type">I’m signing up as</label>
@@ -112,7 +112,7 @@ export function RegistrationSubmittedPage() {
   return (
     <main className="login-page">
       <section className="login-card" aria-labelledby="registration-submitted-title">
-        <div className="login-brand"><span className="brand-mark">A</span><span className="brand-name">ARTSCI<span>FIELD OPERATIONS</span></span></div>
+        <div className="login-brand"><span className="brand-mark">H</span><span className="brand-name">Helideck Report<span>SURVEY OPERATIONS</span></span></div>
         <div className="login-intro"><div className="eyebrow">REQUEST RECEIVED</div><h1 id="registration-submitted-title">Thank you</h1><p>{organizationRequest ? 'Your organization application is waiting for ARTSCI review. If approved, you’ll be able to sign in as its first administrator.' : 'Your field staff request is waiting for the organization administrator to approve it and assign your role.'}</p></div>
         <Link className="primary-button login-submit registration-back-link" to="/login">Return to sign in</Link>
       </section>

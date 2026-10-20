@@ -45,8 +45,8 @@ export function LoginPage() {
   return (
     <main className="login-page">
       <section className="login-card" aria-labelledby="login-title">
-        <div className="login-brand"><span className="brand-mark">A</span><span className="brand-name">ARTSCI<span>FIELD OPERATIONS</span></span></div>
-        <div className="login-intro"><div className="eyebrow">SURVEY PLATFORM</div><h1 id="login-title">Welcome back</h1><p>Sign in to continue to your field workspace.</p></div>
+        <div className="login-brand"><span className="brand-mark">H</span><span className="brand-name">Helideck Report<span>SURVEY OPERATIONS</span></span></div>
+        <div className="login-intro"><div className="eyebrow">HELIDECK REPORT</div><h1 id="login-title">Welcome back</h1><p>Sign in to continue to your field workspace.</p></div>
         {(error || authError) && <div className="login-error" role="alert">{error ?? authError}</div>}
         <form onSubmit={handleSubmit} noValidate>
           <label htmlFor="email">Work email</label>
@@ -57,9 +57,9 @@ export function LoginPage() {
           {fieldErrors.password && <span className="field-error" id="password-error">{fieldErrors.password[0]}</span>}
           <button className="primary-button login-submit" type="submit" disabled={submitting}>{submitting ? 'Signing in…' : 'Sign in'} <span>→</span></button>
         </form>
-        <p className="login-help">New to ARTSCI? <Link to="/register">Create an account</Link><br />Your organization administrator must approve your request before sign-in.</p>
+        <p className="login-help">New to Helideck Report? <Link to="/register">Create an account</Link><br />Your organization administrator must approve your request before sign-in.</p>
       </section>
-      <footer className="login-footer">Secure access for ARTSCI survey operations</footer>
+      <footer className="login-footer">Secure access for Helideck Report</footer>
     </main>
   )
 }

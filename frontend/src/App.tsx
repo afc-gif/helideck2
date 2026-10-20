@@ -81,9 +81,9 @@ function Shell() {
   return (
     <div className="app-shell" data-theme={theme}>
       <aside className={`sidebar ${menuOpen ? 'sidebar-open' : ''}`}>
-        <Link className="brand" to="/" aria-label="ARTSCI Survey home">
-          <span className="brand-mark">A</span>
-          <span className="brand-name">ARTSCI<span>SURVEY OPERATIONS</span></span>
+        <Link className="brand" to="/" aria-label="Helideck Report home">
+          <span className="brand-mark">H</span>
+          <span className="brand-name">Helideck Report<span>SURVEY OPERATIONS</span></span>
         </Link>
         <div className="workspace-label">{user?.is_super_admin ? 'PLATFORM' : user?.memberships[0]?.organization.name.toUpperCase() ?? 'WORKSPACE'}</div>
         <nav className="nav-list" aria-label="Main navigation">
@@ -105,7 +105,7 @@ function Shell() {
       <div className="main-column">
         <header className="topbar">
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">☰</button>
-          <div className="breadcrumbs"><span>ARTSCI</span><b>/</b><strong>{navigation.find((item) => item.path === location.pathname)?.label ?? 'Workspace'}</strong></div>
+          <div className="breadcrumbs"><span>Helideck Report</span><b>/</b><strong>{navigation.find((item) => item.path === location.pathname)?.label ?? 'Workspace'}</strong></div>
           <div className="topbar-right"><ApiStatus /><button className="theme-toggle" type="button" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span><span className="theme-toggle-label">{theme === 'light' ? 'Dark mode' : 'Light mode'}</span></button><span className="topbar-divider" /><span className="avatar" aria-hidden="true">{initials}</span><div className="user-meta"><strong>{user?.name}</strong><span>{currentRole}</span></div><button className="sign-out-button" type="button" onClick={() => { setLogoutError(null); void logout().catch(() => setLogoutError('Sign out failed. Check your connection and retry.')) }}>Sign out</button></div>
         </header>
         {logoutError && <div className="logout-error" role="alert">{logoutError}</div>}
@@ -210,7 +210,7 @@ function Dashboard() {
           </div>
         </article>
       </section>
-      <footer className="page-footer dashboard-footer"><span>ARTSCI Survey Platform</span><span>Showing records available to your account</span></footer>
+      <footer className="page-footer dashboard-footer"><span>Helideck Report</span><span>Showing records available to your account</span></footer>
     </section>
   )
 }
@@ -220,7 +220,7 @@ function StatCard({ label, value, note, icon, accent }: { label: string; value: 
 }
 
 function EmptySection({ title }: { title: string }) {
-  return <section className="section-placeholder"><div className="eyebrow">ARTSCI FIELD OPERATIONS</div><h1>{title}</h1><p>This workspace is ready for the next implementation slice.</p><div className="placeholder-card"><span className="empty-icon">▤</span><strong>No records to show</strong><span>Records created for your organization will appear here.</span></div></section>
+  return <section className="section-placeholder"><div className="eyebrow">HELIDECK REPORT · FIELD OPERATIONS</div><h1>{title}</h1><p>This workspace is ready for the next implementation slice.</p><div className="placeholder-card"><span className="empty-icon">▤</span><strong>No records to show</strong><span>Records created for your organization will appear here.</span></div></section>
 }
 
 export default App
